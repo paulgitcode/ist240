@@ -15,17 +15,18 @@ import java.awt.event.*;
 
 public class mainPanel extends JPanel implements ActionListener
 {
-    JLabel l;
-    JLabel l2;
-    JLabel l3;
-    JLabel l4;
-    JLabel l5;
-    JLabel l6;
+    JLabel l; // about screen label
+    JLabel l2; // about screen label
+    JLabel l3; // team member name
+    JLabel l4; // unused
+    JLabel l5; // team member name
+    JLabel l6; // "insert text later" label
+    JLabel l7; // team member name
     
-    JPanel p2;
-    JPanel p3;
-    JPanel p4;
-    JPanel p5;
+    JPanel p2; // about panel
+    JPanel p3; // team panel
+    JPanel p4; // options panel
+    JPanel p5; // how to play panel
     
     mainMenu mainin;
 
@@ -67,6 +68,7 @@ public class mainPanel extends JPanel implements ActionListener
         l4 = new JLabel();
         l5 = new JLabel();
         l6 = new JLabel();
+        l7 = new JLabel();
         
     }
     
@@ -117,8 +119,10 @@ public class mainPanel extends JPanel implements ActionListener
         add(p3);
         p3.add(l3);
         p3.add(l5);
+        p3.add(l7);
         l3.setText("Paul Williams");
         l5.setText("Brad Reamer");
+        l7.setText("Matthew Calderon");
         
         p3Check = 1;
             
