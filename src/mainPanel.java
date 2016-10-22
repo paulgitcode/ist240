@@ -18,6 +18,8 @@ public class mainPanel extends JPanel implements ActionListener
     JLabel l5; // team member name
     JLabel l6; // "insert text later" label
     JLabel l7; // team member name
+    JLabel l8; // unused
+    JLabel l9; // team member name
     
     JPanel p2; // about panel
     JPanel p3; // team panel
@@ -65,6 +67,8 @@ public class mainPanel extends JPanel implements ActionListener
         l5 = new JLabel();
         l6 = new JLabel();
         l7 = new JLabel();
+        l8 = new JLabel();
+        l9 = new JLabel();
         
     }
     
@@ -116,9 +120,11 @@ public class mainPanel extends JPanel implements ActionListener
         p3.add(l3);
         p3.add(l5);
         p3.add(l7);
+        p3.add(l9);
         l3.setText("Paul Williams");
         l5.setText("Brad Reamer");
         l7.setText("Matthew Calderon");
+        l9.setText("Jasmeet Singh");
         
         p3Check = 1;
             
