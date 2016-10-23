@@ -26,6 +26,13 @@ public class mainPanel extends JPanel implements ActionListener
     JPanel p4; // options panel
     JPanel p5; // how to play panel
     
+    // options
+    JLabel lPlayer; // player name
+    JTextField player; // player name
+    JLabel lDifficulty; // difficulty
+    String[] difficultyLevel = new String[] {"Easy", "Normal", "Hard", "Hardest"};
+    JComboBox<String> difficulty = new JComboBox<>(difficultyLevel);      
+    
     mainMenu mainin;
 
     int p2Check;
@@ -69,6 +76,9 @@ public class mainPanel extends JPanel implements ActionListener
         l7 = new JLabel();
         l8 = new JLabel();
         l9 = new JLabel();
+        lDifficulty=new JLabel();
+        lPlayer=new JLabel();
+        player = new JTextField(20);
         
     }
     
@@ -144,8 +154,21 @@ public class mainPanel extends JPanel implements ActionListener
            }
          add(p4);
          p4.add(l6);
-         l6.setText("Insert options later");
+         l6.setText("Select Game Options");
          
+         // player name JLabel
+         lPlayer.setText("Player Name");
+         p4.add(lPlayer);
+         
+         // player name
+         player.setToolTipText("Enter your Name");
+         p4.add(player);
+
+        // difficulty
+        lDifficulty.setText("Select Difficulty Level"); // difficulty
+        p4.add(lDifficulty);
+        p4.add(difficulty);
+        
          p4Check = 1;
   
             
