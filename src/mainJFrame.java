@@ -5,9 +5,11 @@
 
 import javax.swing.*;
 import java.awt.*;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class mainJFrame extends JFrame
 {
+    gamePanel gameP;
     
         public mainJFrame()
         {
@@ -16,6 +18,7 @@ public class mainJFrame extends JFrame
            
            mainMenu menuP = new mainMenu();
            mainPanel screenP = new mainPanel(menuP);
+           gamePanel gameP = new gamePanel(screenP);
            
            setLayout(new BorderLayout());
            
@@ -25,6 +28,10 @@ public class mainJFrame extends JFrame
            
            getContentPane().add(screenP,"Center");
            getContentPane().add(menuP,"West");
+           
+           //testing game panel
+           //getContentPane().add(gameP,"Center");
+           //testing game panel
            
           
            setDefaultCloseOperation(EXIT_ON_CLOSE);
