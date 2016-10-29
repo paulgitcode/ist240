@@ -139,13 +139,13 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         //add(testE);
         //testE.setBounds(eX,eY ,bWidth ,bHeight );
         
-        //enemyMove.start();
+        enemyMove.start();
         
         //---------------------------------------------
         
         // create and add enemy button, testing enemy class
         
-        testE2 = new enemy(maxY, minY, maxX, minX, decreaseX);   // enemy(int inmaxY, int inminY, int inmaxX, int inminX, int indecreaseX)
+        testE2 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);   // enemy(int inmaxY, int inminY, int inmaxX, int inminX, int indecreaseX)
         add(testE2);
         
         //-----------------------------------------
@@ -240,14 +240,14 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         if(obj == enemyMove)
         {
             
-            if(eX < (minX-60))
+            if(testE2.geteX() < (minX-60) || ((testE2.geteX()) > (maxX + 60)))
             {
-                remove(testE);
+                remove(testE2);
                 validate();
                 repaint();
+                testE2 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
+                add(testE2);
             }
-            eX = eX+decreaseX;
-            testE.setBounds(eX,eY ,bWidth ,bHeight );
             
             
         }

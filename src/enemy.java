@@ -27,12 +27,17 @@ public class enemy extends player implements ActionListener
     int eX; // x coordinate of enemy
     int eY; // y coordinate of enemy
     
+    double randD; // random direction
+    
     int decreaseX; // value of decrease in movement on x coor
+    int increaseX; // value of increase in movement on x coor
     
     Timer enemyMove; //
     int enemyDelay; // delay value for enemy move sequence
     
-    enemy(int inmaxY, int inminY, int inmaxX, int inminX, int indecreaseX)
+    int direction; // set direction of movement, 0 left moving, 1 right moving
+    
+    enemy(int inmaxY, int inminY, int inmaxX, int inminX, int indecreaseX, int inenemyDelay)
     {
         super();
         
@@ -43,17 +48,30 @@ public class enemy extends player implements ActionListener
         
         bWidth = 30;
         bHeight = 32;
-        
-        eX = maxX;
-        eY = minY;
+ 
+        //randD = Math.random();
+        //direction = (int)(randD*1);
+        direction = ranDirection();
         
         decreaseX = indecreaseX;
+        increaseX = 10;
         
-        enemyDelay = 100;
+        enemyDelay = inenemyDelay;
         enemyMove = new Timer(enemyDelay, this);
         enemyMove.start();
         
-        setBounds(eX, eY, bWidth, bHeight);
+        if (direction == 0){
+            eX = maxX;
+            eY = minY;
+            setBounds(eX, eY, bWidth, bHeight);
+        }
+        
+        if (direction == 1){
+            
+            eX = minX;
+            eY = minY;
+            setBounds(eX,eY, bWidth, bHeight);
+        }
     }
     
     public void actionPerformed(ActionEvent e)
@@ -62,7 +80,7 @@ public class enemy extends player implements ActionListener
         
         Object obj = e.getSource();
         
-        if(obj == enemyMove)
+        if((obj == enemyMove) && (direction == 0))
         {
  
             eX = eX+decreaseX;
@@ -70,5 +88,28 @@ public class enemy extends player implements ActionListener
               
         }
         
+        if((obj == enemyMove) && (direction == 1))
+        {
+            eX = eX+increaseX;
+            setBounds(eX,eY ,bWidth ,bHeight );
+        }
+        
+    }
+    
+    int geteX()
+    {
+        return eX;
+    }
+    
+    int geteY()
+    {
+        return eY;
+    }
+    
+    int ranDirection()
+    {
+        randD = Math.random();
+        int tempD = (int)(randD*2);
+        return tempD;
     }
 }
