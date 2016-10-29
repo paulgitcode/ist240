@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseMotionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -14,8 +15,14 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Paul
+ * @author Team 04
  * 640, 480, size of window
+ * 
+ * -----Image Library-----
+ * Folder: \images
+ * 
+ * Character Standing: char_stand.jpg
+ *
  */
 public class gamePanel extends JPanel implements KeyListener
 {
@@ -42,6 +49,8 @@ public class gamePanel extends JPanel implements KeyListener
     int decreaseX; // value of decrease in movement on x coor
     int jumpY; // value of jump height
     
+    ImageIcon char_stand; // image icon of standing character
+    
     gamePanel(mainPanel informedMain)
     {
         super();
@@ -50,6 +59,12 @@ public class gamePanel extends JPanel implements KeyListener
         setFocusable(true);
         addKeyListener(this);
         requestFocusInWindow();
+        
+        //Set initial icon for character
+        
+        char_stand = new ImageIcon("images/char_stand.jpg");
+        
+        //--------------------------
         
         // set min and max of y and x values
         maxY = 20;
@@ -65,9 +80,9 @@ public class gamePanel extends JPanel implements KeyListener
         
         //---------------------------
         
-        //set value of width and height of button
-        bWidth = 40;
-        bHeight = 40;
+        //set value of width and height of button. Character icon is 30 width, 32 height
+        bWidth = 30;
+        bHeight = 32;
         //----------------------------------
         
         // set initial values of coordinates for button
@@ -79,7 +94,9 @@ public class gamePanel extends JPanel implements KeyListener
         // create and add button, with location
         testB = new JButton();
         add(testB);
-        testB.setText("C");
+        //testB.setText("C");
+        testB.setIcon(char_stand);
+        
         
         testB.setBounds(bX,bY ,bWidth ,bHeight ); // set location of button  setBounds(x cor, y cor , width , height )
         //---------------------------------------
