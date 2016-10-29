@@ -1,4 +1,6 @@
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseMotionListener;
@@ -6,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -24,7 +27,7 @@ import javax.swing.JPanel;
  * Character Standing: char_stand.jpg
  *
  */
-public class gamePanel extends JPanel implements KeyListener
+public class gamePanel extends JPanel implements KeyListener, ActionListener
 {
     
     mainPanel mainPin;
@@ -44,12 +47,23 @@ public class gamePanel extends JPanel implements KeyListener
     
     player testP; // test player class
     
+    player testE; // test enemy object
+    int eX; // x coordinate of enemy
+    int eY; // y coordinate of enemy
+    
     int bX; // X coordinate of button
     int bY; // Y coordinate of button
     
     int increaseX; // value of increase in movment on x coor
     int decreaseX; // value of decrease in movement on x coor
     int jumpY; // value of jump height
+    Timer jump; // timer for jump sequence
+    int jumpDelay; // delay value for jump sequence
+    int jumpIncrement; // increment of jump
+    int jumpItotal; // add up increments to compare to min value
+    
+    Timer enemyMove; //
+    int enemyDelay; // delay value for enemy move sequence
     
     
     gamePanel(mainPanel informedMain)
@@ -70,10 +84,26 @@ public class gamePanel extends JPanel implements KeyListener
         
         // set value of amount of movement
         increaseX = 10;
-        decreaseX = 10;
-        jumpY = -40;
+        decreaseX = -10;
+        jumpY = -60;
+        jumpDelay = 500;
+        jumpIncrement = jumpY/3;
+        jumpItotal = 0;
+        enemyDelay = 100;
         
         //---------------------------
+        
+        //set up timer for jump
+        
+        //jump = new Timer(jumpDelay,this);
+        
+        //-------------------------
+        
+        // set up timer for enemy move
+        
+        enemyMove = new Timer(enemyDelay, this);
+        
+        //
         
         //set value of width and height of button. Character icon is 30 width, 32 height
         bWidth = 30;
@@ -85,15 +115,31 @@ public class gamePanel extends JPanel implements KeyListener
         bY = minY;
         //----------------------------------
         
+        // set initial values of coorinates for enemy
+        
+        eX = maxX;
+        eY = minY;
+                
+                
+        
+        //--------------------------------------
         
         // create and add button, with location
 
         testP = new player();
         add(testP);
-        
-        
         testP.setBounds(bX,bY ,bWidth ,bHeight ); // set location of button  setBounds(x cor, y cor , width , height )
         //---------------------------------------
+        
+        // create and add enemy button, with location
+        
+        testE = new player();
+        add(testE);
+        testE.setBounds(eX,eY ,bWidth ,bHeight );
+        
+        enemyMove.start();
+        
+        //---------------------------------------------
         
         mainPin = informedMain;
        
@@ -128,7 +174,7 @@ public class gamePanel extends JPanel implements KeyListener
             
             if(bX+increaseX > minX){
                 
-                bX=bX-decreaseX;
+                bX=bX+decreaseX;
             }
 
             testP.setBounds(bX,bY ,bWidth ,bHeight );
@@ -139,6 +185,7 @@ public class gamePanel extends JPanel implements KeyListener
         
         if(k==e.VK_SPACE){
             
+       
             if((bY + jumpY) == (minY + jumpY)){
             
                 bY=bY+jumpY;
@@ -159,9 +206,10 @@ public class gamePanel extends JPanel implements KeyListener
         int k = e.getKeyCode();
         
         if(k==e.VK_SPACE){
-            
+
             bY=bY-jumpY;
             testP.setBounds(bX,bY ,bWidth ,bHeight );
+           
         }
         
         if(k==e.VK_RIGHT || k==e.VK_LEFT )
@@ -172,5 +220,30 @@ public class gamePanel extends JPanel implements KeyListener
     };
     
     public void keyTyped(KeyEvent e){}
+    
+    public void actionPerformed(ActionEvent e)
+    {
+           //bY=bY+jumpIncrement;
+           //testP.setBounds(bX,bY ,bWidth ,bHeight );
+        
+        Object obj = e.getSource();
+        
+        if(obj == enemyMove)
+        {
+            
+            if(eX < (minX-60))
+            {
+                remove(testE);
+                validate();
+                repaint();
+            }
+            eX = eX+decreaseX;
+            testE.setBounds(eX,eY ,bWidth ,bHeight );
+            
+            
+        }
+        
+        
+    }
 
 }

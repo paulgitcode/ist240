@@ -14,9 +14,7 @@ import javax.swing.JButton;
  */
 public class player extends JButton
 {
-    int bWidth; // value of width of button
-    int bHeight; // value of height of button
-    
+   
     ImageIcon char_stand; // image icon of standing character
     ImageIcon char_right; // image of moving right
     ImageIcon char_left; // image of moving left
@@ -29,7 +27,10 @@ public class player extends JButton
         char_right = new ImageIcon("images/char_walk_right.jpg");
         char_left = new ImageIcon("images/char_walk_left.jpg");
         
+
         setIcon(char_stand);
+        setBorderPainted(false); // remove button border
+        
     }
     
     void setIconR()
@@ -47,4 +48,8 @@ public class player extends JButton
     {
         setIcon(char_stand);
     }
+    
+
+            
+            
 }
