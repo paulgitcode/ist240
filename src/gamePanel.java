@@ -50,6 +50,8 @@ public class gamePanel extends JPanel implements KeyListener
     int jumpY; // value of jump height
     
     ImageIcon char_stand; // image icon of standing character
+    ImageIcon char_right; // image of moving right
+    ImageIcon char_left; // image of moving left
     
     gamePanel(mainPanel informedMain)
     {
@@ -63,7 +65,8 @@ public class gamePanel extends JPanel implements KeyListener
         //Set initial icon for character
         
         char_stand = new ImageIcon("images/char_stand.jpg");
-        
+        char_right = new ImageIcon("images/char_walk_right.jpg");
+        char_left = new ImageIcon("images/char_walk_left.jpg");
         //--------------------------
         
         // set min and max of y and x values
@@ -127,6 +130,7 @@ public class gamePanel extends JPanel implements KeyListener
             }
             
             testB.setBounds(bX,bY ,bWidth ,bHeight );
+            testB.setIcon(char_right);
         }
         
         if(k==e.VK_LEFT){
@@ -137,6 +141,7 @@ public class gamePanel extends JPanel implements KeyListener
             }
 
             testB.setBounds(bX,bY ,bWidth ,bHeight );
+            testB.setIcon(char_left);
         }
         
         //Jumping------------------------
@@ -166,6 +171,11 @@ public class gamePanel extends JPanel implements KeyListener
             
             bY=bY-jumpY;
             testB.setBounds(bX,bY ,bWidth ,bHeight );
+        }
+        
+        if(k==e.VK_RIGHT || k==e.VK_LEFT )
+        {
+            testB.setIcon(char_stand);
         }
     
     };
