@@ -65,6 +65,8 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
     Timer enemyMove; //
     int enemyDelay; // delay value for enemy move sequence
     
+    enemy testE2; // testing enemy class
+    
     
     gamePanel(mainPanel informedMain)
     {
@@ -133,13 +135,20 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         
         // create and add enemy button, with location
         
-        testE = new player();
-        add(testE);
-        testE.setBounds(eX,eY ,bWidth ,bHeight );
+        //testE = new player();
+        //add(testE);
+        //testE.setBounds(eX,eY ,bWidth ,bHeight );
         
-        enemyMove.start();
+        //enemyMove.start();
         
         //---------------------------------------------
+        
+        // create and add enemy button, testing enemy class
+        
+        testE2 = new enemy(maxY, minY, maxX, minX, decreaseX);   // enemy(int inmaxY, int inminY, int inmaxX, int inminX, int indecreaseX)
+        add(testE2);
+        
+        //-----------------------------------------
         
         mainPin = informedMain;
        
