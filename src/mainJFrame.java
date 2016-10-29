@@ -26,11 +26,11 @@ public class mainJFrame extends JFrame
            menuP.add(Box.createRigidArea(new Dimension(20,20)));
            menuP.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
            
-           getContentPane().add(screenP,"Center");
-           getContentPane().add(menuP,"West");
+           //getContentPane().add(screenP,"Center");
+           //getContentPane().add(menuP,"West");
            
            //testing game panel
-           //getContentPane().add(gameP,"Center");
+           getContentPane().add(gameP,"Center");
            //testing game panel
            
           
