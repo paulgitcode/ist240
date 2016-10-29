@@ -61,7 +61,7 @@ public class gamePanel extends JPanel implements KeyListener
         // set value of amount of movement
         increaseX = 10;
         decreaseX = 10;
-        jumpY = 20;
+        jumpY = -40;
         
         //---------------------------
         
@@ -122,15 +122,36 @@ public class gamePanel extends JPanel implements KeyListener
             testB.setBounds(bX,bY ,bWidth ,bHeight );
         }
         
+        //Jumping------------------------
+        
         if(k==e.VK_SPACE){
             
+            if((bY + jumpY) == (minY + jumpY)){
             
+                bY=bY+jumpY;
+                testB.setBounds(bX,bY ,bWidth ,bHeight );
+            }
+            
+            
+
         }
+        
+        //---------------------------------------
         
         //-------------------
     }
     
-    public void keyReleased(KeyEvent e){}
+    public void keyReleased(KeyEvent e){
+        
+        int k = e.getKeyCode();
+        
+        if(k==e.VK_SPACE){
+            
+            bY=bY-jumpY;
+            testB.setBounds(bX,bY ,bWidth ,bHeight );
+        }
+    
+    };
     
     public void keyTyped(KeyEvent e){}
 
