@@ -40,7 +40,9 @@ public class gamePanel extends JPanel implements KeyListener
     int bWidth; // value of width of button
     int bHeight; // value of height of button
     
-    JButton testB; // test button
+    //JButton testB; // test button
+    
+    player testP; // test player class
     
     int bX; // X coordinate of button
     int bY; // Y coordinate of button
@@ -49,9 +51,6 @@ public class gamePanel extends JPanel implements KeyListener
     int decreaseX; // value of decrease in movement on x coor
     int jumpY; // value of jump height
     
-    ImageIcon char_stand; // image icon of standing character
-    ImageIcon char_right; // image of moving right
-    ImageIcon char_left; // image of moving left
     
     gamePanel(mainPanel informedMain)
     {
@@ -61,13 +60,6 @@ public class gamePanel extends JPanel implements KeyListener
         setFocusable(true);
         addKeyListener(this);
         requestFocusInWindow();
-        
-        //Set initial icon for character
-        
-        char_stand = new ImageIcon("images/char_stand.jpg");
-        char_right = new ImageIcon("images/char_walk_right.jpg");
-        char_left = new ImageIcon("images/char_walk_left.jpg");
-        //--------------------------
         
         // set min and max of y and x values
         maxY = 20;
@@ -95,13 +87,12 @@ public class gamePanel extends JPanel implements KeyListener
         
         
         // create and add button, with location
-        testB = new JButton();
-        add(testB);
-        //testB.setText("C");
-        testB.setIcon(char_stand);
+
+        testP = new player();
+        add(testP);
         
         
-        testB.setBounds(bX,bY ,bWidth ,bHeight ); // set location of button  setBounds(x cor, y cor , width , height )
+        testP.setBounds(bX,bY ,bWidth ,bHeight ); // set location of button  setBounds(x cor, y cor , width , height )
         //---------------------------------------
         
         mainPin = informedMain;
@@ -129,8 +120,8 @@ public class gamePanel extends JPanel implements KeyListener
                 bX=bX+increaseX;
             }
             
-            testB.setBounds(bX,bY ,bWidth ,bHeight );
-            testB.setIcon(char_right);
+            testP.setBounds(bX,bY ,bWidth ,bHeight );
+            testP.setIconR(); // use method to set icon right facing
         }
         
         if(k==e.VK_LEFT){
@@ -140,8 +131,8 @@ public class gamePanel extends JPanel implements KeyListener
                 bX=bX-decreaseX;
             }
 
-            testB.setBounds(bX,bY ,bWidth ,bHeight );
-            testB.setIcon(char_left);
+            testP.setBounds(bX,bY ,bWidth ,bHeight );
+            testP.setIconL(); // use method to set icon left facing
         }
         
         //Jumping------------------------
@@ -151,7 +142,7 @@ public class gamePanel extends JPanel implements KeyListener
             if((bY + jumpY) == (minY + jumpY)){
             
                 bY=bY+jumpY;
-                testB.setBounds(bX,bY ,bWidth ,bHeight );
+                testP.setBounds(bX,bY ,bWidth ,bHeight );
             }
             
             
@@ -170,12 +161,12 @@ public class gamePanel extends JPanel implements KeyListener
         if(k==e.VK_SPACE){
             
             bY=bY-jumpY;
-            testB.setBounds(bX,bY ,bWidth ,bHeight );
+            testP.setBounds(bX,bY ,bWidth ,bHeight );
         }
         
         if(k==e.VK_RIGHT || k==e.VK_LEFT )
         {
-            testB.setIcon(char_stand);
+            testP.setIconStand();
         }
     
     };
