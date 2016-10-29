@@ -1,4 +1,7 @@
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseMotionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -14,7 +17,7 @@ import javax.swing.JPanel;
  * @author Paul
  * 640, 480, size of window
  */
-public class gamePanel extends JPanel
+public class gamePanel extends JPanel implements KeyListener
 {
     
     mainPanel mainPin;
@@ -35,11 +38,18 @@ public class gamePanel extends JPanel
     int bX; // X coordinate of button
     int bY; // Y coordinate of button
     
+    int increaseX; // value of increase in movment on x coor
+    int decreaseX; // value of decrease in movement on x coor
+    int jumpY; // value of jump height
+    
     gamePanel(mainPanel informedMain)
     {
         super();
         setBackground(Color.white);
         setLayout(null);
+        setFocusable(true);
+        addKeyListener(this);
+        requestFocusInWindow();
         
         // set min and max of y and x values
         maxY = 20;
@@ -48,9 +58,16 @@ public class gamePanel extends JPanel
         minX = 20;
         //---------------------------------
         
+        // set value of amount of movement
+        increaseX = 10;
+        decreaseX = 10;
+        jumpY = 20;
+        
+        //---------------------------
+        
         //set value of width and height of button
-        bWidth = 60;
-        bHeight = 60;
+        bWidth = 40;
+        bHeight = 40;
         //----------------------------------
         
         // set initial values of coordinates for button
@@ -79,5 +96,42 @@ public class gamePanel extends JPanel
         
         //----------------------
     }
+    
+    public void keyPressed(KeyEvent e)
+    {
+        int k = e.getKeyCode();
+        
+        //arrow movement------------------
+        if(k==e.VK_RIGHT){
+            
+            if(bX+increaseX < maxX){
+                
+                bX=bX+increaseX;
+            }
+            
+            testB.setBounds(bX,bY ,bWidth ,bHeight );
+        }
+        
+        if(k==e.VK_LEFT){
+            
+            if(bX+increaseX > minX){
+                
+                bX=bX-decreaseX;
+            }
+
+            testB.setBounds(bX,bY ,bWidth ,bHeight );
+        }
+        
+        if(k==e.VK_SPACE){
+            
+            
+        }
+        
+        //-------------------
+    }
+    
+    public void keyReleased(KeyEvent e){}
+    
+    public void keyTyped(KeyEvent e){}
 
 }
