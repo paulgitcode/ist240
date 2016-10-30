@@ -1,7 +1,7 @@
 
 /**
  *
- * @author Paul, Matt, Brad
+ * @author Paul, Matt, Brad, Jasmeet
  * IST 240
  * L08 First Final Project Deliverable
  */
@@ -48,6 +48,8 @@ public class mainPanel extends JPanel implements ActionListener {
     int p5Check;
     int p6Check;
 
+    JButton save; // save options
+    
     public mainPanel(mainMenu informedPanel) {
         super();
         setBackground(Color.white);
@@ -90,6 +92,8 @@ public class mainPanel extends JPanel implements ActionListener {
         lDifficulty = new JLabel();
         lPlayer = new JLabel();
         player = new JTextField(20);
+        save= new JButton("SAVE");
+        save.addActionListener(this);
 
     }
 
@@ -182,9 +186,15 @@ public class mainPanel extends JPanel implements ActionListener {
             lDifficulty.setText("Select Difficulty Level"); // difficulty
             p4.add(lDifficulty);
             p4.add(difficulty);
+            
+            p4.add(save); //Save the options
 
             p4Check = 1;
 
+        }
+        if (obj == save) {
+            System.out.println("Name=" + player.getText());
+            System.out.println("Difficulty=" +difficulty.getSelectedItem());
         }
         // How to Play menu
         if (obj == mainin.b4) {
