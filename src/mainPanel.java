@@ -18,7 +18,7 @@ public class mainPanel extends JPanel implements ActionListener {
     JLabel l5; // team member name
     JLabel l6; // "insert text later" label
     JLabel l7; // team member name
-    JLabel l8; // unused
+    JLabel l8; // directions
     JLabel l9; // team member name
     JLabel l10; //Start game countdown
 
@@ -40,7 +40,8 @@ public class mainPanel extends JPanel implements ActionListener {
             
               
     mainMenu mainin;
-
+    mainJFrame mainFrame;
+    
     int p2Check;
     int p3Check;
     int p4Check;
@@ -51,7 +52,7 @@ public class mainPanel extends JPanel implements ActionListener {
         super();
         setBackground(Color.white);
         mainin = informedPanel;
-
+        //mainFrame = informedFrame;
         p2Check = 0;
         p3Check = 0;
         p4Check = 0;
@@ -202,14 +203,19 @@ public class mainPanel extends JPanel implements ActionListener {
             }
             add(p5);
             p5.add(l6);
-            l6.setText("Insert Directions later");
-
+            p5.add(l8);
+            l6.setText("Press the Spacebar to jump");
+            l8.setText("Press the left and right arrow keys to move");
             p5Check = 1;
 
         }
 
+        /* doesn't currently function with gamePanel implementation
+        
+        
         if (obj == mainin.b5) {
             if (p6Check != 1) {
+                
                 remove(p2);
                 p2Check = 0;
                 remove(p3);
@@ -233,7 +239,7 @@ public class mainPanel extends JPanel implements ActionListener {
            
             p6Check = 1;
         }
-        
+        */
         if (obj == tim)
         {
             if (counter == 0)
