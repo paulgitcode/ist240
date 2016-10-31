@@ -132,8 +132,16 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         //--------------------------------------
         
         // create and add button, with location
+        persistObject persist= new persistObject();
 
-        testP = new player();
+        testP= (player) persist.DeSerialize();
+        if(testP == null){
+            testP= new player(); 
+        }
+        System.out.println("game - Name="+testP.getName());
+        System.out.println("game - Difficulty="+testP.getDifficulty());
+
+        // testP = new player();
         add(testP);
         testP.setBounds(bX,bY ,bWidth ,bHeight ); // set location of button  setBounds(x cor, y cor , width , height )
         //---------------------------------------

@@ -33,7 +33,7 @@ public class mainPanel extends JPanel implements ActionListener {
     JTextField player; // player name
     JLabel lDifficulty; // difficulty
     String[] difficultyLevel = new String[]{"Easy", "Normal", "Hard", "Hardest"};
-    JComboBox<String> difficulty = new JComboBox<>(difficultyLevel);
+    JComboBox difficulty = new JComboBox(difficultyLevel);
 
     Timer tim;
     int counter = 3;
@@ -187,6 +187,17 @@ public class mainPanel extends JPanel implements ActionListener {
             p4.add(lDifficulty);
             p4.add(difficulty);
             
+            persistObject persist= new persistObject();
+
+            player pl= (player) persist.DeSerialize();
+            if(pl == null){
+                pl= new player(); 
+            }
+            System.out.println("Name="+pl.getName());
+            System.out.println("Difficulty="+pl.getDifficulty());
+            player.setText(pl.getName());
+            difficulty.setSelectedItem(pl.getDifficulty());
+
             p4.add(save); //Save the options
 
             p4Check = 1;
@@ -195,6 +206,11 @@ public class mainPanel extends JPanel implements ActionListener {
         if (obj == save) {
             System.out.println("Name in Main Panel =" + player.getText());
             System.out.println("Difficulty=" +difficulty.getSelectedItem());
+            persistObject persist= new persistObject();
+            player pl=new player();
+            pl.setName(player.getText());
+            pl.setDifficulty((String)difficulty.getSelectedItem());
+            persist.Serialize(pl);
         }
         // How to Play menu
         if (obj == mainin.b4) {

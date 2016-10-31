@@ -10,14 +10,15 @@ import javax.swing.JButton;
 
 /**
  *
- * @author Paul
+ * @author Paul, Jasmeet
  */
-public class player extends JButton
+public class player extends JButton implements java.io.Serializable
 {
    
     ImageIcon char_stand; // image icon of standing character
     ImageIcon char_right; // image of moving right
     ImageIcon char_left; // image of moving left
+    String name, difficulty;
     
     player()
     {
@@ -33,6 +34,22 @@ public class player extends JButton
         
     }
     
+    public void setName(String n){
+        this.name=n;
+    }
+    
+    public String getName(){
+        return this.name;
+    }
+      
+    public void setDifficulty(String d){
+        this.difficulty=d;
+    }
+    
+    public String getDifficulty(){
+        return this.difficulty;
+    }
+      
     void setIconR()
     {
         setIcon(char_right);

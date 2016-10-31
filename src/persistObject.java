@@ -41,11 +41,11 @@ public class persistObject {
                file.close();
                return obj;
             }catch(IOException e) {
-               e.printStackTrace();
+               //e.printStackTrace();
                return null;
             }catch(ClassNotFoundException c) {
                System.out.println("Object not found");
-               c.printStackTrace();
+               //c.printStackTrace();
                return null;
             }
         }
