@@ -193,7 +193,7 @@ public class mainPanel extends JPanel implements ActionListener {
 
         }
         if (obj == save) {
-            System.out.println("Name=" + player.getText());
+            System.out.println("Name in Main Panel =" + player.getText());
             System.out.println("Difficulty=" +difficulty.getSelectedItem());
         }
         // How to Play menu

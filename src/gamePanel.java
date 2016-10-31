@@ -67,6 +67,8 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
     
     enemy testE2; // testing enemy class
     
+    String pName;// Holds player name from mainPanel
+    String dText; // Holds difficulty from mainPanel
     
     gamePanel(mainPanel informedMain)
     {
@@ -106,6 +108,9 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         enemyMove = new Timer(enemyDelay, this);
         
         //
+        
+        pName = "Not Set";
+        dText = "Not Set";
         
         //set value of width and height of button. Character icon is 30 width, 32 height
         bWidth = 30;
@@ -156,9 +161,14 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         //testing text in panel
         //testT = "Test Text";
         //testL = new JLabel();
-        //testL.setText(testT);
+        //testL.setText(mainPin.player.getText());
         //add(testL);
+        //testL.setLocation(280, 40);
         
+        mainPin.save.addActionListener(this);
+        
+        
+
         
         //----------------------
     }
@@ -245,11 +255,19 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
                 remove(testE2);
                 validate();
                 repaint();
+
                 testE2 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
                 add(testE2);
             }
             
             
+        }
+        
+        if(obj == mainPin.save)
+        {
+            pName = mainPin.player.getText();
+            System.out.println("Name in Game Panel =" + pName);
+
         }
         
         
