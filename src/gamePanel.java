@@ -71,6 +71,15 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
     String pName;// Holds player name from mainPanel
     String dText; // Holds difficulty from mainPanel
     
+    int sX; // X coor for a sword button
+    int sY; // Y coor for a sword button
+    int sW; // widght of sword button
+    int sH; // height of sword button
+    
+    JButton swordB; //
+    
+    int pDirect; // set direction of character based on movement - 0: right, 1: left
+    
     gamePanel(mainPanel informedMain)
     {
         super();
@@ -95,6 +104,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         jumpIncrement = jumpY/3;
         jumpItotal = 0;
         enemyDelay = 100;
+        pDirect = 0;
         
         //---------------------------
         
@@ -116,6 +126,8 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         //set value of width and height of button. Character icon is 30 width, 32 height
         bWidth = 30;
         bHeight = 32;
+        sW = 15;
+        sH = 5;
         //----------------------------------
         
         // set initial values of coordinates for button
@@ -181,6 +193,11 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         add(testL);
         add(diffL);
         
+        swordB = new JButton();
+        add(swordB);
+        swordB.setVisible(false);
+        
+        
         mainPin.save.addActionListener(this);
         
         //if(bX == testE2.geteX() && bY == testE2.geteY()){
@@ -207,6 +224,8 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
             
             testP.setBounds(bX,bY ,bWidth ,bHeight );
             testP.setIconR(); // use method to set icon right facing
+            pDirect = 0;
+            
             
              //Test collision with enemies
             checkCollision();
@@ -222,8 +241,32 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
             testP.setBounds(bX,bY ,bWidth ,bHeight );
             testP.setIconL(); // use method to set icon left facing
             
+            pDirect = 1;
+            
             // Test collision with enemies
             checkCollision();
+        }
+        
+        if(k==e.VK_DOWN){
+            
+            if (pDirect == 0){
+                
+               sX = bX+40;
+               sY = bY+10;
+                swordB.setBounds(sX,sY , sW, sH);
+                
+            }if(pDirect == 1){
+                
+                sX = bX-40;
+                sY = bY+10;
+                swordB.setBounds(sX,sY , sW, sH);
+            }
+            swordB.setVisible(true);
+            checkAttack();
+            
+            
+            
+            
         }
         
         //Jumping------------------------
@@ -265,6 +308,10 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         {
             testP.setIconStand();
             checkCollision();
+        }
+        
+        if(k==e.VK_DOWN){
+            swordB.setVisible(false);
         }
     
     };
@@ -308,6 +355,17 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         
         if(bX == testE2.geteX() && bY == testE2.geteY()){
         System.out.print("Collision!");
+    }
+    }
+    
+    void checkAttack(){
+        
+        int eXtest = testE2.geteX();
+        
+        if(sX < (eXtest + bWidth/2) && sX > (eXtest - bHeight/2)){
+        System.out.print("Successful Hit!");
+        
+        
     }
     }
 

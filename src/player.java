@@ -66,7 +66,7 @@ public class player extends JButton implements java.io.Serializable
         setIcon(char_stand);
     }
     
-
+    
             
             
 }
