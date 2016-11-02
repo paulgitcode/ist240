@@ -112,4 +112,21 @@ public class enemy extends player implements ActionListener
         int tempD = (int)(randD*2);
         return tempD;
     }
+    
+    void setDelayHardest()
+    {
+        
+        enemyMove.stop();
+        enemyDelay = 20;
+        enemyMove = new Timer(enemyDelay, this);
+        enemyMove.start();
+    }
+    
+    void setDelayHard()
+    {
+        enemyMove.stop();
+        enemyDelay = 75;
+        enemyMove = new Timer(enemyDelay, this);
+        enemyMove.start();
+    }
 }
