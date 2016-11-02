@@ -31,7 +31,8 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
 {
     
     mainPanel mainPin;
-    JLabel testL;
+    JLabel testL; // label for player name
+    JLabel diffL; // label for difficulty level
     String testT;
     
     
@@ -167,15 +168,24 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
        
         
         //testing text in panel
-        //testT = "Test Text";
-        //testL = new JLabel();
-        //testL.setText(mainPin.player.getText());
-        //add(testL);
-        //testL.setLocation(280, 40);
+        testT = "Test Text";
+        testL = new JLabel();
+        diffL = new JLabel();
+        testL.setText("Player: " + testP.getName());
+        diffL.setText("Difficulty: " + testP.getDifficulty());
+        
+        diffL.setLocation(minX + 105, 30);
+        testL.setLocation(minX, 30);
+        testL.setSize(100, 40);
+        diffL.setSize(100, 40);
+        add(testL);
+        add(diffL);
         
         mainPin.save.addActionListener(this);
         
-        
+        //if(bX == testE2.geteX() && bY == testE2.geteY()){
+           //     System.out.print("Collision!");
+          //  }
 
         
         //----------------------
@@ -191,10 +201,15 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
             if(bX+increaseX < maxX){
                 
                 bX=bX+increaseX;
+                
+                
             }
             
             testP.setBounds(bX,bY ,bWidth ,bHeight );
             testP.setIconR(); // use method to set icon right facing
+            
+             //Test collision with enemies
+            checkCollision();
         }
         
         if(k==e.VK_LEFT){
@@ -206,6 +221,9 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
 
             testP.setBounds(bX,bY ,bWidth ,bHeight );
             testP.setIconL(); // use method to set icon left facing
+            
+            // Test collision with enemies
+            checkCollision();
         }
         
         //Jumping------------------------
@@ -218,6 +236,9 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
                 bY=bY+jumpY;
                 testP.setBounds(bX,bY ,bWidth ,bHeight );
             }
+            
+            // test collision
+            checkCollision();
             
             
 
@@ -236,12 +257,14 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
 
             bY=bY-jumpY;
             testP.setBounds(bX,bY ,bWidth ,bHeight );
+            checkCollision();
            
         }
         
         if(k==e.VK_RIGHT || k==e.VK_LEFT )
         {
             testP.setIconStand();
+            checkCollision();
         }
     
     };
@@ -279,6 +302,13 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         }
         
         
+    }
+    
+    void checkCollision(){
+        
+        if(bX == testE2.geteX() && bY == testE2.geteY()){
+        System.out.print("Collision!");
+    }
     }
 
 }
