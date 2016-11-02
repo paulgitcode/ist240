@@ -67,6 +67,9 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
     int enemyDelay; // delay value for enemy move sequence
     
     enemy testE2; // testing enemy class
+    enemy testE3; // another enemy
+    
+    int eCount; // determine if additional enemies are added. 1 = one, 2 = two.
     
     String pName;// Holds player name from mainPanel
     String dText; // Holds difficulty from mainPanel
@@ -103,8 +106,9 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         jumpDelay = 500;
         jumpIncrement = jumpY/3;
         jumpItotal = 0;
-        enemyDelay = 100;
+        enemyDelay = 50;
         pDirect = 0;
+        eCount = 0;
         
         //---------------------------
         
@@ -153,6 +157,27 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         }
         System.out.println("game - Name="+testP.getName());
         System.out.println("game - Difficulty="+testP.getDifficulty());
+        
+        testE3 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
+        
+        if(testP.getDifficulty().equals("Easy")){
+            enemyDelay = 250;
+        }
+        
+        if(testP.getDifficulty().equals("Normal")){
+            enemyDelay = 200;
+        }
+        
+        if(testP.getDifficulty().equals("Hard")){
+            enemyDelay = 100;
+            eCount = 2;
+            add(testE3);
+        }
+        
+        if(testP.getDifficulty().equals("Hardest")){
+            enemyDelay = 50;
+        }
+        
 
         // testP = new player();
         add(testP);
@@ -173,6 +198,8 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         
         testE2 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);   // enemy(int inmaxY, int inminY, int inmaxX, int inminX, int indecreaseX)
         add(testE2);
+        
+        
         
         //-----------------------------------------
         
@@ -257,7 +284,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
                 
             }if(pDirect == 1){
                 
-                sX = bX-40;
+                sX = bX-20;
                 sY = bY+10;
                 swordB.setBounds(sX,sY , sW, sH);
             }
@@ -336,6 +363,20 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
 
                 testE2 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
                 add(testE2);
+            }
+            
+            if(eCount == 2)
+            {
+            if(testE3.geteX() < (minX-60) || ((testE3.geteX()) > (maxX + 60)))
+            {
+                remove(testE3);
+                validate();
+                repaint();
+
+                testE3 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
+                add(testE3);
+            }
+                            
             }
             
             
