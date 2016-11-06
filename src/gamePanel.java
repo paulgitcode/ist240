@@ -48,7 +48,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
     
     player testP; // test player class
     
-    player testE; // test enemy object
+    
     int eX; // x coordinate of enemy
     int eY; // y coordinate of enemy
     
@@ -155,6 +155,9 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         if(testP == null){
             testP= new player(); 
         }
+        
+
+        
         System.out.println("game - Name="+testP.getName());
         System.out.println("game - Difficulty="+testP.getDifficulty());
         
@@ -187,6 +190,12 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         // testP = new player();
         add(testP);
         testP.setBounds(bX,bY ,bWidth ,bHeight ); // set location of button  setBounds(x cor, y cor , width , height )
+        
+        //-----Set Score to 0-----
+        
+        //testP.setScore(0);
+        
+        //------------------------
         //---------------------------------------
         
         // create and add enemy button, with location
@@ -427,6 +436,10 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         
         if(sX < (eXtest + bWidth/2) && sX > (eXtest - bHeight/2)){
         System.out.print("Successful Hit!");
+        
+        //testP.setScore(testP.getScore()+1);
+        
+        //System.out.print(testP.getScore());
         
         
     }
