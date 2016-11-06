@@ -430,11 +430,38 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
             testP.setName(pName);
             
             dText = (String)mainPin.difficulty.getSelectedItem();
-            System.out.println("Name in Game Panel =" + dText);
+            System.out.println("Difficulty in Game Panel =" + dText);
             testP.setDifficulty(dText);
             
             testL.setText("Player: " + testP.getName());
             diffL.setText("Difficulty: " + testP.getDifficulty());
+            
+            //----------Set Difficulty Speed------------
+            
+        if(testP.getDifficulty().equals("Easy")){
+            enemyDelay = 250;
+        }
+        
+        if(testP.getDifficulty().equals("Normal")){
+            enemyDelay = 200;
+        }
+        
+        if(testP.getDifficulty().equals("Hard")){
+            enemyDelay = 100;
+            eCount = 2;
+            add(testE3);
+            testE3.setDelayHard();
+            
+        }
+        
+        if(testP.getDifficulty().equals("Hardest")){
+            enemyDelay = 50;
+            eCount = 2;
+            add(testE3);
+            testE3.setDelayHardest();
+        }
+        
+        //--------------------------------------------------
 
         }
         
