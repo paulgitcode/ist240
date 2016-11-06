@@ -10,7 +10,7 @@
  */
 public class scoreBoard {
     
-    private int score = 0;
+    private int score;
     
     public scoreBoard()
     {

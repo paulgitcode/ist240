@@ -8,6 +8,7 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.*;
 
 public class mainPanel extends JPanel implements ActionListener {
 
@@ -55,11 +56,23 @@ public class mainPanel extends JPanel implements ActionListener {
 
     JButton save; // save options
     
+    XML_240 readScore; // XML reader for score
+    
+    String mainScoreFile = "scoresheet.xml";
+    
+    scoreBoard mainScore;
+    
     public mainPanel(mainMenu informedPanel) {
         super();
         setBackground(Color.white);
         
-        testScore = "Zero";
+        testScore = "Last Score is: ";
+        
+        readScore = new XML_240();
+        readScore.openReaderXML(mainScoreFile);
+        mainScore = (scoreBoard) readScore.ReadObject();
+        readScore.closeReaderXML();
+        
         mainin = informedPanel;
         //mainFrame = informedFrame;
         p2Check = 0;
@@ -266,6 +279,8 @@ public class mainPanel extends JPanel implements ActionListener {
                 p3Check = 0;
                 remove(p4);
                 p4Check = 0;
+                remove(p5);
+                p5Check = 0;
                 remove(p6);
                 p6Check = 0;
 
@@ -274,7 +289,7 @@ public class mainPanel extends JPanel implements ActionListener {
             }
             add(p7);
             p7.add(l11);
-            l11.setText(testScore);
+            l11.setText(testScore + mainScore.getScore());
             p7Check = 1;
 
         }
