@@ -20,7 +20,7 @@ public class player extends JButton implements java.io.Serializable
     ImageIcon char_left; // image of moving left
     String name ="James Boond";
     String difficulty="Easy";
-    int sco; // holds the hits
+    int sco=0; // holds the hits
     
     
     player()
