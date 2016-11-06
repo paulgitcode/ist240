@@ -15,6 +15,7 @@ public class mainMenu extends JPanel
     JButton b3;
     JButton b4;
     JButton b5;
+    JButton b6;
     titleJLabel la1;
     
     public mainMenu()
@@ -28,6 +29,7 @@ public class mainMenu extends JPanel
         b3 = new JButton("Options");
         b4 = new JButton("How to Play");
         b5 = new JButton("Start Game");
+        b6 = new JButton("Scores");
         la1 = new titleJLabel("The Side Scroller");
               
         add(la1);
@@ -36,5 +38,6 @@ public class mainMenu extends JPanel
         add(b4);
         add(b3);
         add(b5);
+        add(b6);
     }
 }

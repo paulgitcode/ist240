@@ -21,12 +21,16 @@ public class mainPanel extends JPanel implements ActionListener {
     JLabel l8; // directions
     JLabel l9; // team member name
     JLabel l10; //Start game countdown
+    JLabel l11; // Test score text
 
     JPanel p2; // about panel
     JPanel p3; // team panel
     JPanel p4; // options panel
     JPanel p5; // how to play panel
     JPanel p6; // Start Game panel
+    JPanel p7; // Score panel
+    
+    String testScore; // String to test score in panel
 
     // options
     JLabel lPlayer; // player name
@@ -47,18 +51,23 @@ public class mainPanel extends JPanel implements ActionListener {
     int p4Check;
     int p5Check;
     int p6Check;
+    int p7Check;
 
     JButton save; // save options
     
     public mainPanel(mainMenu informedPanel) {
         super();
         setBackground(Color.white);
+        
+        testScore = "Zero";
         mainin = informedPanel;
         //mainFrame = informedFrame;
         p2Check = 0;
         p3Check = 0;
         p4Check = 0;
         p5Check = 0;
+        p6Check = 0;
+        p7Check = 0;
 
         p2 = new JPanel();
         p2.setLayout(new BoxLayout(p2, BoxLayout.PAGE_AXIS));
@@ -70,12 +79,15 @@ public class mainPanel extends JPanel implements ActionListener {
         p5.setLayout(new BoxLayout(p5, BoxLayout.PAGE_AXIS));
         p6 = new JPanel();
         p6.setLayout(new BoxLayout(p6, BoxLayout.PAGE_AXIS));
+        p7 = new JPanel();
+        p7.setLayout(new BoxLayout(p7, BoxLayout.PAGE_AXIS));
 
         mainin.b1.addActionListener(this);
         mainin.b2.addActionListener(this);
         mainin.b3.addActionListener(this);
         mainin.b4.addActionListener(this);
         mainin.b5.addActionListener(this);
+        mainin.b6.addActionListener(this);
 
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
@@ -89,6 +101,7 @@ public class mainPanel extends JPanel implements ActionListener {
         l8 = new JLabel();
         l9 = new JLabel();
         l10 = new JLabel();
+        l11 = new JLabel(); // test text for score jLabel
         lDifficulty = new JLabel();
         lPlayer = new JLabel();
         player = new JTextField(20);
@@ -112,6 +125,9 @@ public class mainPanel extends JPanel implements ActionListener {
                 p5Check = 0;
                 remove(p6);
                 p6Check = 0;
+                remove(p7);
+                p7Check = 0;
+
 
                 revalidate();
                 repaint();
@@ -137,6 +153,8 @@ public class mainPanel extends JPanel implements ActionListener {
                 p5Check = 0;
                 remove(p6);
                 p6Check = 0;
+                remove(p7);
+                p7Check = 0;
 
                 revalidate();
                 repaint();
@@ -166,6 +184,8 @@ public class mainPanel extends JPanel implements ActionListener {
                 p5Check = 0;
                 remove(p6);
                 p6Check = 0;
+                remove(p7);
+                p7Check = 0;
 
                 revalidate();
                 repaint();
@@ -223,6 +243,8 @@ public class mainPanel extends JPanel implements ActionListener {
                 p4Check = 0;
                 remove(p6);
                 p6Check = 0;
+                remove(p7);
+                p7Check = 0;
 
                 revalidate();
                 repaint();
@@ -231,10 +253,32 @@ public class mainPanel extends JPanel implements ActionListener {
             p5.add(l6);
             p5.add(l8);
             l6.setText("Press the Spacebar to jump");
-            l8.setText("Press the left and right arrow keys to move");
+            l8.setText("Press the left and right arrow keys to move and down arrow to attack");
             p5Check = 1;
 
         }
+        // Scores menu
+        if (obj == mainin.b6) {
+            if (p6Check != 1) {
+                remove(p2);
+                p2Check = 0;
+                remove(p3);
+                p3Check = 0;
+                remove(p4);
+                p4Check = 0;
+                remove(p6);
+                p6Check = 0;
+
+                revalidate();
+                repaint();
+            }
+            add(p7);
+            p7.add(l11);
+            l11.setText(testScore);
+            p7Check = 1;
+
+        }
+        
 
         /* doesn't currently function with gamePanel implementation
         
