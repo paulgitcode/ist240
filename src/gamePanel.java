@@ -168,8 +168,8 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         
 
         
-        System.out.println("game - Name="+testP.getName());
-        System.out.println("game - Difficulty="+testP.getDifficulty());
+        //System.out.println("game - Name="+testP.getName());
+        //System.out.println("game - Difficulty="+testP.getDifficulty());
         
         testE3 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
         
@@ -427,6 +427,14 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         {
             pName = mainPin.player.getText();
             System.out.println("Name in Game Panel =" + pName);
+            testP.setName(pName);
+            
+            dText = (String)mainPin.difficulty.getSelectedItem();
+            System.out.println("Name in Game Panel =" + dText);
+            testP.setDifficulty(dText);
+            
+            testL.setText("Player: " + testP.getName());
+            diffL.setText("Difficulty: " + testP.getDifficulty());
 
         }
         
