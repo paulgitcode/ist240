@@ -18,7 +18,7 @@ public class player extends JButton implements java.io.Serializable
     ImageIcon char_stand; // image icon of standing character
     ImageIcon char_right; // image of moving right
     ImageIcon char_left; // image of moving left
-    String name ="James Boond";
+    String name ="James";
     String difficulty="Easy";
     int sco=0; // holds the hits
     

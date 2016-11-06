@@ -425,24 +425,41 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
     
     void checkCollision(){
         
-        if(bX == testE2.geteX() && bY == testE2.geteY()){
+        if(bX == testE2.geteX() && bY == testE2.geteY())
+        {
         System.out.print("Collision!");
-    }
+        }
+        
+        if(bX == testE3.geteX() && bY == testE3.geteY())
+        {
+        System.out.print("Collision!");
+        }
     }
     
-    void checkAttack(){
+    void checkAttack()
+    {
         
-        int eXtest = testE2.geteX();
         
-        if(sX < (eXtest + bWidth/2) && sX > (eXtest - bHeight/2)){
+      
+        if(sX < (testE2.geteX() + bWidth/2) && sX > (testE2.geteX() - bHeight/2))
+        {
         System.out.print("Successful Hit!");
         
-        //testP.setScore(testP.getScore()+1);
+        testP.setScore(testP.getScore()+1);
+        System.out.print(testP.getScore());
         
-        //System.out.print(testP.getScore());
+        
+        }
+        
+        if(sX < (testE3.geteX() + bWidth/2) && sX > (testE3.geteX() - bHeight/2))
+        {
+        System.out.print("Successful Hit!");
+        
+        testP.setScore(testP.getScore()+1);
+        System.out.print(testP.getScore());
         
         
-    }
+        }
     }
 
 }
