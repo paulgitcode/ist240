@@ -129,4 +129,9 @@ public class enemy extends player implements ActionListener
         enemyMove = new Timer(enemyDelay, this);
         enemyMove.start();
     }
+    
+    public void stopE()
+    {
+        enemyMove.stop();
+    }
 }

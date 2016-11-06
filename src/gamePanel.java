@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import java.io.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -83,6 +84,10 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
     
     int pDirect; // set direction of character based on movement - 0: right, 1: left
     
+    XML_240 scoreStore; // xml reader and writer class object to store score data
+    String scoreFile ; // string to hold score xml file name
+    scoreBoard scoreB; // create scoreboard class to store scores and other data
+    
     gamePanel(mainPanel informedMain)
     {
         super();
@@ -99,7 +104,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         minX = 20;
         //---------------------------------
         
-        // set value of amount of movement
+        // set value of amount of movement and other settings
         increaseX = 10;
         decreaseX = -10;
         jumpY = -60;
@@ -109,6 +114,11 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         enemyDelay = 50;
         pDirect = 0;
         eCount = 0;
+        scoreB = new scoreBoard();
+        scoreFile = "scoresheet.xml";
+        scoreStore = new XML_240();
+        scoreStore.openWriterXML(scoreFile);
+        //scoreStore.closeWriterXML();
         
         //---------------------------
         
@@ -428,11 +438,17 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         if(bX == testE2.geteX() && bY == testE2.geteY())
         {
         System.out.print("Collision!");
+        scoreB.setBoard(testP.getScore());
+        scoreStore.writeObject(scoreB);
+        scoreStore.closeWriterXML();
         }
         
         if(bX == testE3.geteX() && bY == testE3.geteY())
         {
         System.out.print("Collision!");
+        scoreB.setBoard(testP.getScore());
+        scoreStore.writeObject(scoreB);
+        scoreStore.closeWriterXML();
         }
     }
     
@@ -444,7 +460,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         if(sX < (testE2.geteX() + bWidth/2) && sX > (testE2.geteX() - bHeight/2))
         {
         System.out.print("Successful Hit!");
-        
+
         testP.setScore(testP.getScore()+1);
         System.out.print(testP.getScore());
         
