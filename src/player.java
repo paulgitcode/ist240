@@ -27,7 +27,7 @@ public class player extends JButton implements java.io.Serializable
     {
         super();
         
-        char_stand = new ImageIcon("images/char_stand.jpg");
+        char_stand = new ImageIcon("images/char_idle.jpg");
         char_right = new ImageIcon("images/char_walk_right.jpg");
         char_left = new ImageIcon("images/char_walk_left.jpg");
         

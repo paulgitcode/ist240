@@ -88,6 +88,9 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
     String scoreFile ; // string to hold score xml file name
     scoreBoard scoreB; // create scoreboard class to store scores and other data
     
+    ImageIcon floorI;
+    JButton floorB;
+    
     gamePanel(mainPanel informedMain)
     {
         super();
@@ -127,6 +130,18 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         //jump = new Timer(jumpDelay,this);
         
         //-------------------------
+        
+        //Floor--------
+        
+        floorI = new ImageIcon("images/floor.jpg");
+        floorB = new JButton();
+        floorB.setBorderPainted(false);
+        floorB.setBounds(minX-30, 390, 670, 61);
+        floorB.setIcon(floorI);
+        add(floorB);
+        
+        
+        //------------
         
         // set up timer for enemy move
         
