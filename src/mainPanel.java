@@ -219,31 +219,32 @@ public class mainPanel extends JPanel implements ActionListener {
             lDifficulty.setText("Select Difficulty Level"); // difficulty
             p4.add(lDifficulty);
             p4.add(difficulty);
+            p4.add(save); //Save the options
             
             persistObject persist= new persistObject();
 
-            player pl= (player) persist.DeSerialize();
-            if(pl == null){
-                pl= new player(); 
-            }
-            System.out.println("Name="+pl.getName());
-            System.out.println("Difficulty="+pl.getDifficulty());
-            player.setText(pl.getName());
-            difficulty.setSelectedItem(pl.getDifficulty());
+            Object ob =persist.readObject();
+            options o= new options();
+            if(options.class.isInstance(ob))
+                o= (options) ob;
 
-            p4.add(save); //Save the options
+            // System.out.println("Name="+o.getName());
+            // System.out.println("Difficulty="+o.getDifficulty());
+            player.setText(o.getName());
+            difficulty.setSelectedItem(o.getDifficulty());
+            persist.writeObject(o);
 
             p4Check = 1;
 
         }
         if (obj == save) {
-            System.out.println("Name in Main Panel =" + player.getText());
-            System.out.println("Difficulty=" +difficulty.getSelectedItem());
+            // System.out.println("Name in Main Panel =" + player.getText());
+            // System.out.println("Difficulty=" +difficulty.getSelectedItem());
             persistObject persist= new persistObject();
-            player pl=new player();
-            pl.setName(player.getText());
-            pl.setDifficulty((String)difficulty.getSelectedItem());
-            persist.Serialize(pl);
+            options o=new options();
+            o.setName(player.getText());
+            o.setDifficulty((String)difficulty.getSelectedItem());
+            persist.writeObject(o);
         }
         // How to Play menu
         if (obj == mainin.b4) {

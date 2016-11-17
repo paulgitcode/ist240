@@ -189,9 +189,6 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         //--------------------------------------
         
         // create and add button, with location
-        persistObject persist= new persistObject();
-
-        testP= (player) persist.DeSerialize();
         if(testP == null){
             testP= new player(); 
         }
@@ -530,11 +527,11 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         if(obj == mainPin.save)
         {
             pName = mainPin.player.getText();
-            System.out.println("Name in Game Panel =" + pName);
+            // System.out.println("Name in Game Panel =" + pName);
             testP.setName(pName);
             
             dText = (String)mainPin.difficulty.getSelectedItem();
-            System.out.println("Difficulty in Game Panel =" + dText);
+            // System.out.println("Difficulty in Game Panel =" + dText);
             testP.setDifficulty(dText);
             
             testL.setText("Player: " + testP.getName());
@@ -586,7 +583,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         
         if(bX == testE3.geteX() && bY == testE3.geteY())
         {
-        System.out.print("Collision!");
+        System.out.println("Collision!");
         scoreB.setBoard(testP.getScore());
         scoreStore.openWriterXML(scoreFile);
         scoreStore.writeObject(scoreB);
