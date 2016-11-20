@@ -63,6 +63,14 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
     int jumpDelay; // delay value for jump sequence
     int jumpIncrement; // increment of jump
     int jumpItotal; // add up increments to compare to min value
+    int jumpNumber;
+    int jumpNumberDown;
+    int jumpInProgress; // 0 is no, 1 is yes
+    
+    Timer moveR;
+    int moveDelay;
+    Timer moveL;
+   
     
     Timer enemyMove; //
     int enemyDelay; // delay value for enemy move sequence
@@ -111,9 +119,13 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         increaseX = 10;
         decreaseX = -10;
         jumpY = -60;
-        jumpDelay = 500;
+        jumpDelay = 100;
         jumpIncrement = jumpY/3;
         jumpItotal = 0;
+        jumpNumber = 0;
+        jumpNumberDown = 0;
+        moveDelay = 75;
+       
         enemyDelay = 50;
         pDirect = 0;
         eCount = 0;
@@ -127,7 +139,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         
         //set up timer for jump
         
-        //jump = new Timer(jumpDelay,this);
+        
         
         //-------------------------
         
@@ -148,6 +160,9 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         enemyMove = new Timer(enemyDelay, this);
         
         //
+        
+        moveR = new Timer(moveDelay,this);
+        moveL = new Timer(moveDelay,this);
         
         pName = "Not Set";
         dText = "Not Set";
@@ -281,36 +296,38 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         //arrow movement------------------
         if(k==e.VK_RIGHT){
             
-            if(bX+increaseX < maxX){
+            //if(bX+increaseX < maxX){
                 
-                bX=bX+increaseX;
+               // bX=bX+increaseX;
                 
                 
-            }
+           // }
             
-            testP.setBounds(bX,bY ,bWidth ,bHeight );
+            //testP.setBounds(bX,bY ,bWidth ,bHeight );
+            
             testP.setIconR(); // use method to set icon right facing
             pDirect = 0;
-            
+            moveR.start();
             
              //Test collision with enemies
-            checkCollision();
+            //checkCollision();
         }
         
         if(k==e.VK_LEFT){
             
-            if(bX+increaseX > minX){
+            //if(bX+increaseX > minX){
                 
-                bX=bX+decreaseX;
-            }
+                //bX=bX+decreaseX;
+            //}
 
-            testP.setBounds(bX,bY ,bWidth ,bHeight );
+            //testP.setBounds(bX,bY ,bWidth ,bHeight );
             testP.setIconL(); // use method to set icon left facing
             
             pDirect = 1;
+            moveL.start();
             
             // Test collision with enemies
-            checkCollision();
+            //checkCollision();
         }
         
         if(k==e.VK_DOWN){
@@ -339,15 +356,31 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         
         if(k==e.VK_SPACE){
             
-       
-            if((bY + jumpY) == (minY + jumpY)){
+       //----Original jump code
+            //if((bY + jumpY) == (minY + jumpY)){
             
-                bY=bY+jumpY;
-                testP.setBounds(bX,bY ,bWidth ,bHeight );
+                
+                //bY=bY+jumpY;
+                //testP.setBounds(bX,bY ,bWidth ,bHeight );
+            
+            if (jumpInProgress == 0)
+            {
+                jumpInProgress = 1;
+                bY=bY+(jumpY/3);
+                testP.setBounds(bX,bY ,bWidth ,bHeight );       
+                jumpNumber++;  
+                jump = new Timer(jumpDelay,this);
+                jump.start();
             }
+ 
+                
+            //}
+        
+        //-----
             
+
             // test collision
-            checkCollision();
+            //checkCollision();
             
             
 
@@ -362,17 +395,19 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         
         int k = e.getKeyCode();
         
-        if(k==e.VK_SPACE){
+        //if(k==e.VK_SPACE){
 
-            bY=bY-jumpY;
-            testP.setBounds(bX,bY ,bWidth ,bHeight );
-            checkCollision();
+           // bY=bY-jumpY;
+            //testP.setBounds(bX,bY ,bWidth ,bHeight );
+           // checkCollision();
            
-        }
+        //}
         
         if(k==e.VK_RIGHT || k==e.VK_LEFT )
         {
             testP.setIconStand();
+            moveR.stop();
+            moveL.stop();
             checkCollision();
         }
         
@@ -438,6 +473,60 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
             
         }
         
+        if(obj == jump)
+        {
+                    
+
+                    if(jumpNumber <= 3)
+                    {
+                    bY=bY+(jumpY/3);
+                    testP.setBounds(bX,bY ,bWidth ,bHeight );
+                    checkCollision();
+                    jumpNumber++;
+                    
+                    }
+                    if(jumpNumber == 4)
+                    {
+                    
+                    if(jumpNumberDown <= 3)
+                        {   
+                        bY=bY-(jumpY/3);
+                        testP.setBounds(bX,bY ,bWidth ,bHeight );
+                        checkCollision();
+                        jumpNumberDown++;
+                        }
+                    }
+                    
+                    if(jumpNumberDown == 4)
+                    {
+                        stopJump();
+                    }
+                    
+                    
+        }
+        
+        if(obj == moveR)
+        {
+            if(bX+increaseX < maxX){
+                
+                bX=bX+increaseX; 
+            }
+            
+            testP.setBounds(bX,bY ,bWidth ,bHeight );
+            checkCollision();
+        }
+        
+        if(obj == moveL)
+        {
+            if(bX+increaseX > minX){
+                
+                bX=bX+decreaseX;
+            }
+            
+            testP.setBounds(bX,bY ,bWidth ,bHeight );
+            checkCollision();
+        }
+        
         if(obj == mainPin.save)
         {
             pName = mainPin.player.getText();
@@ -479,6 +568,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         //--------------------------------------------------
 
         }
+        
         
         
     }
@@ -528,6 +618,14 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         
         
         }
+    }
+    
+    void stopJump()
+    {
+        jump.stop();
+        jumpNumberDown = 0;
+        jumpNumber = 0;
+        jumpInProgress = 0;
     }
 
 }
