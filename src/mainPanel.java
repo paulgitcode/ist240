@@ -240,8 +240,6 @@ public class mainPanel extends JPanel implements ActionListener {
 
         }
         if (obj == save) {
-            // System.out.println("Name in Main Panel =" + player.getText());
-            // System.out.println("Difficulty=" +difficulty.getSelectedItem());
             persistObject persist= new persistObject();
             options o=new options();
             o.setName(player.getText());
