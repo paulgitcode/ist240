@@ -50,6 +50,7 @@ public class persistObject
             JTable jt = new JTable();
             jt.setModel(model);
             jt.setAutoCreateRowSorter(true);
+            jt.enable(false);
 
             for (int idx = 1; idx <= 10; idx++) {
                 Vector<Object> data = new Vector<Object>();
