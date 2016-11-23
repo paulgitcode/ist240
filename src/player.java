@@ -38,10 +38,9 @@ public class player extends JButton {
         if (options.class.isInstance(ob)) {
             o = (options) ob;
         }
-        setName(o.getName());
-        setDifficulty(o.getDifficulty());
-        setScore(o.getScore());
-        
+        this.setName(o.getName());
+        this.setDifficulty(o.getDifficulty());
+        this.setScore(o.getScore()); 
     }
 
     public void setName(String n) {
