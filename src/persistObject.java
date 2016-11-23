@@ -54,8 +54,8 @@ public class persistObject
 
             for (int idx = 1; idx <= 10; idx++) {
                 Vector<Object> data = new Vector<Object>();
-                data.add("Name "+ idx);
-                data.add("Difficulty" + idx);
+                data.add("Name "+ String.format("%03d",idx));
+                data.add("Difficulty " + String.format("%03d",idx));
                 data.add(String.format("%05d",(int)(Math.random()*100*idx)));
                 data.add(new Date());
                 model.addRow(data);
