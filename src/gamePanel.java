@@ -574,7 +574,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         
         if(bX == testE2.geteX() && bY == testE2.geteY())
         {
-        System.out.print("Collision!");
+        System.out.println("Collision!");
         scoreB.setBoard(testP.getScore());
         scoreStore.openWriterXML(scoreFile);
         scoreStore.writeObject(scoreB);
