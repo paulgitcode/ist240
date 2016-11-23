@@ -9,6 +9,8 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.io.*;
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
 
 public class mainPanel extends JPanel implements ActionListener {
 
@@ -291,6 +293,15 @@ public class mainPanel extends JPanel implements ActionListener {
             add(p7);
             p7.add(l11);
             l11.setText(testScore + mainScore.getScore());
+            String[] cols = {"Name", "Difficulty", "Score", "Date"};
+            Object[][] data = {{"Abc", "Easy", 100, "11/19/16"},
+                                {"Xyz", "Normal", 50, "11/10/16"}};
+            
+            JTable jt =new JTable(data, cols);
+            jt.setAutoCreateRowSorter(true);
+            //Create the scroll pane and add the table to it.
+            JScrollPane scrollPane = new JScrollPane(jt);
+            p7.add(scrollPane);
             p7Check = 1;
 
         }
