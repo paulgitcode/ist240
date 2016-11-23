@@ -1,3 +1,10 @@
+
+import java.util.Date;
+import java.util.Vector;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -33,5 +40,27 @@ public class persistObject
             xml.openWriterXML(xmlFileName);
             xml.writeObject(o);
             xml.closeWriterXML();
+        }
+        
+        public JScrollPane displayXML(){
+            DefaultTableModel model = new DefaultTableModel(0, 0);
+            String[] cols = {"Name", "Difficulty", "Score", "Date"};
+            model.setColumnIdentifiers(cols);
+            JTable jt = new JTable();
+            jt.setModel(model);
+            jt.setAutoCreateRowSorter(true);
+
+            for (int idx = 1; idx <= 10; idx++) {
+                Vector<Object> data = new Vector<Object>();
+                data.add("Name "+ idx);
+                data.add("Difficulty" + idx);
+                data.add("Score" +idx);
+                data.add(new Date());
+                model.addRow(data);
+            }
+           
+            //Create the scroll pane and add the table to it.
+            JScrollPane scrollPane = new JScrollPane(jt);
+            return scrollPane;
         }
 }
