@@ -1,6 +1,7 @@
 
 import java.util.Date;
 import java.util.Vector;
+import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -54,13 +55,14 @@ public class persistObject
                 Vector<Object> data = new Vector<Object>();
                 data.add("Name "+ idx);
                 data.add("Difficulty" + idx);
-                data.add("Score" +idx);
+                data.add(String.format("%05d",(int)(Math.random()*100*idx)));
                 data.add(new Date());
                 model.addRow(data);
             }
            
             //Create the scroll pane and add the table to it.
             JScrollPane scrollPane = new JScrollPane(jt);
+            scrollPane.setBorder(BorderFactory.createTitledBorder ("Score Board [Click on Header to Sort]"));
             return scrollPane;
         }
 }
