@@ -218,6 +218,13 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
             add(testE2);
             validate();
             repaint();
+            
+            if(testE3 != null)
+            {
+                remove(testE3);
+                validate();
+                repaint();
+            }
         }
         
         if(testP.getDifficulty().equals("Normal")){
@@ -227,6 +234,13 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
             add(testE2);
             validate();
             repaint();
+            
+            if(testE3 != null)
+            {
+                remove(testE3);
+                validate();
+                repaint();
+            }
         }
         
         if(testP.getDifficulty().equals("Hard")){
