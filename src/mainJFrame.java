@@ -49,6 +49,7 @@ public class mainJFrame extends JFrame implements ActionListener
             menuP.setVisible(false);
             getContentPane().setLayout(new BorderLayout());
             getContentPane().add(gameP,"Center");
+            gameP.unPause();
             setDefaultCloseOperation(EXIT_ON_CLOSE);
             setSize (640, 480);
         }

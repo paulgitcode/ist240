@@ -37,6 +37,9 @@ public class enemy extends player implements ActionListener
     
     int direction; // set direction of movement, 0 left moving, 1 right moving
     
+    int collisionXmax; // 
+    int collisionXmin; //
+    
     enemy(int inmaxY, int inminY, int inmaxX, int inminX, int indecreaseX, int inenemyDelay)
     {
         super();
@@ -45,7 +48,7 @@ public class enemy extends player implements ActionListener
         minY = inminY;
         maxX = inmaxX;
         minX = inminX;
-        
+  
         bWidth = 30;
         bHeight = 32;
  
@@ -58,7 +61,7 @@ public class enemy extends player implements ActionListener
         
         enemyDelay = inenemyDelay;
         enemyMove = new Timer(enemyDelay, this);
-        enemyMove.start();
+        //enemyMove.start();
         
         if (direction == 0){
             eX = maxX;
@@ -119,7 +122,7 @@ public class enemy extends player implements ActionListener
         enemyMove.stop();
         enemyDelay = 20;
         enemyMove = new Timer(enemyDelay, this);
-        enemyMove.start();
+        //enemyMove.start();
     }
     
     void setDelayHard()
@@ -127,11 +130,46 @@ public class enemy extends player implements ActionListener
         enemyMove.stop();
         enemyDelay = 75;
         enemyMove = new Timer(enemyDelay, this);
-        enemyMove.start();
+        //enemyMove.start();
+    }
+    
+    void setDelayEasy()
+    {
+        enemyMove.stop();
+        enemyDelay = 500;
+        enemyMove = new Timer(enemyDelay, this);
+    }
+    
+    void setDelayNormal()
+    {
+        enemyMove.stop();
+        enemyDelay = 200;
+        enemyMove = new Timer(enemyDelay, this);
     }
     
     public void stopE()
     {
         enemyMove.stop();
+    }
+    
+    public void startE()
+    {
+        enemyMove.start();
+    }
+    
+    public void setupCollision()
+    {
+        collisionXmax = eX + 20;
+        collisionXmin = eX - 20;
+    }
+    
+    public int getCollisionMax()
+    {
+        return collisionXmax;
+    }
+    
+    public int getCollisionMin()
+    {
+        return collisionXmin;
     }
 }

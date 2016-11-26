@@ -99,8 +99,11 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
     ImageIcon floorI;
     JButton floorB;
     
-    JLabel yourScore; // too display score after game is done
+    JLabel yourScore; // to display score after game is done
     String scoreResult; //
+    
+    boolean gameFinished; // is the game over?
+    boolean gamePaused; // is the game paused? game screen starts paused so that enemies are not moving. 
     
     gamePanel(mainPanel informedMain)
     {
@@ -131,11 +134,13 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
        
         enemyDelay = 50;
         pDirect = 0;
-        eCount = 0;
+        eCount = 1;
         scoreB = new scoreBoard();
         scoreFile = "scoresheet.xml";
         scoreStore = new XML_240();
         scoreResult = "Your score is: ";
+        gameFinished = false;
+        gamePaused = true;
         
         //scoreStore.closeWriterXML();
         
@@ -197,35 +202,56 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         if(testP == null){
             testP= new player(); 
         }
-        
-        
-        
+ 
         //System.out.println("game - Name="+testP.getName());
         //System.out.println("game - Difficulty="+testP.getDifficulty());
         
         testE3 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
+        testE2 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
         
         if(testP.getDifficulty().equals("Easy")){
             enemyDelay = 250;
+            eCount = 1;
+            testE2.setDelayEasy();
+            add(testE2);
+            validate();
+            repaint();
         }
         
         if(testP.getDifficulty().equals("Normal")){
             enemyDelay = 200;
+            eCount = 1;
+            testE2.setDelayNormal();
+            add(testE2);
+            validate();
+            repaint();
         }
         
         if(testP.getDifficulty().equals("Hard")){
             enemyDelay = 100;
             eCount = 2;
-            add(testE3);
             testE3.setDelayHard();
+            add(testE3);
+            testE2.setDelayNormal();
+            add(testE2);
+            validate();
+            repaint();
+            
+            
             
         }
         
         if(testP.getDifficulty().equals("Hardest")){
             enemyDelay = 50;
             eCount = 2;
-            add(testE3);
             testE3.setDelayHardest();
+            add(testE3);
+            testE2.setDelayHard();
+            add(testE2);
+            validate();
+            repaint();
+            
+            
         }
         
 
@@ -252,8 +278,8 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         
         // create and add enemy button, testing enemy class
         
-        testE2 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);   // enemy(int inmaxY, int inminY, int inmaxX, int inminX, int indecreaseX)
-        add(testE2);
+          // enemy(int inmaxY, int inminY, int inmaxX, int inminX, int indecreaseX)
+        //add(testE2);
         
         
         
@@ -438,7 +464,28 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
                 repaint();
 
                 testE2 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
+                
+                if(testP.getDifficulty().equals("Easy"))   
+                {
+                    testE2.setDelayEasy();
+                }
+                
+                if(testP.getDifficulty().equals("Hard"))
+                {
+                    testE2.setDelayNormal();
+                }
+                
+                if(testP.getDifficulty().equals("Hardest"))
+                {
+                    testE2.setDelayHard();
+                }
+                
                 add(testE2);
+                
+                if(gamePaused == false)
+                {
+                    testE2.startE();
+                }
 
             }
             
@@ -456,6 +503,11 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
                 testE3 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
                 add(testE3);
                 testE3.setDelayHard();
+                
+                if(gamePaused == false)
+                {
+                    testE3.startE();
+                }
             
                 }
                 
@@ -465,6 +517,11 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
                 testE3 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
                 add(testE3);
                 testE3.setDelayHardest();
+                
+                if(gamePaused == false)
+                {
+                    testE3.startE();
+                }
             
                 }
 
@@ -472,7 +529,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
                             
             }
             
-            
+           checkCollision();
         }
         
         if(obj == jump)
@@ -546,25 +603,47 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
             
         if(testP.getDifficulty().equals("Easy")){
             enemyDelay = 250;
+            eCount = 1;
+            testE2.setDelayEasy();
+            
+            if(testE3 != null)
+            {
+                remove(testE3);
+                validate();
+                repaint();
+            }
         }
         
         if(testP.getDifficulty().equals("Normal")){
             enemyDelay = 200;
+            eCount = 1;
+            testE2.setDelayNormal();
+            
+            if(testE3 != null)
+            {
+                remove(testE3);
+                validate();
+                repaint();
+            }
         }
         
         if(testP.getDifficulty().equals("Hard")){
             enemyDelay = 100;
             eCount = 2;
-            add(testE3);
+            testE2.setDelayNormal();
             testE3.setDelayHard();
+            //add(testE3);
+            //testE3.setDelayHard();
             
         }
         
         if(testP.getDifficulty().equals("Hardest")){
             enemyDelay = 50;
             eCount = 2;
-            add(testE3);
+            testE2.setDelayHard();
             testE3.setDelayHardest();
+            //add(testE3);
+            //testE3.setDelayHardest();
         }
         
         //--------------------------------------------------
@@ -577,7 +656,20 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
     
     void checkCollision(){
         
-        if(bX == testE2.geteX() && bY == testE2.geteY())
+        if(gameFinished == false)
+        {
+        
+        testE2.setupCollision();
+            
+        if(
+                (
+                bX == testE2.geteX() || ( bX <= testE2.collisionXmax && bX >= testE2.collisionXmin)
+                
+                )
+                
+                && bY == testE2.geteY()
+                
+                )
         {
         System.out.println("Collision!");
         scoreB.setBoard(testP.getScore());
@@ -587,7 +679,21 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         stopGame();
         }
         
-        if(bX == testE3.geteX() && bY == testE3.geteY())
+        if(eCount == 2)
+        {
+        
+        testE3.setupCollision();
+        
+            
+            
+        if(
+                (
+                bX == testE3.geteX() || ( bX <= testE3.collisionXmax && bX >= testE3.collisionXmin)
+                )
+                
+                && bY == testE3.geteY()
+                
+                )
         {
         System.out.println("Collision!");
         scoreB.setBoard(testP.getScore());
@@ -595,13 +701,17 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         scoreStore.writeObject(scoreB);
         scoreStore.closeWriterXML();
         stopGame();
+        }
+        
+        }
+        
         }
     }
     
     void checkAttack()
     {
         
-        
+       if(gameFinished == false){
       
         if(sX < (testE2.geteX() + bWidth/2) && sX > (testE2.geteX() - bHeight/2))
         {
@@ -622,6 +732,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         
         
         }
+       }
     }
     
     void stopJump()
@@ -635,6 +746,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
     void stopGame()
     {
         enemyMove.stop(); // Stop addition of new enemies
+        gameFinished = true; // set game finished to true
         remove(testE2); // Remove enemy
         remove(testE3); // Remove enemy
         yourScore.setText(scoreResult + " " + testP.getScore() + ". " + "You can exit."); // set label text
@@ -642,9 +754,25 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         yourScore.setSize(200, 40); // set lable size
         add(yourScore); // add label
         
+        
         validate();
         repaint();
         
+    }
+    
+    void unPause()
+    {
+        if(gamePaused == true)
+        {
+            testE2.startE();
+            
+            if(eCount == 2)
+            {
+                testE3.startE();
+            }
+            
+            gamePaused = false;
+        }
     }
 
 }
