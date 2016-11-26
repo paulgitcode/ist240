@@ -209,6 +209,8 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         testE3 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
         testE2 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
         
+        System.out.println(eCount);
+        
         if(testP.getDifficulty().equals("Easy")){
             enemyDelay = 250;
             eCount = 1;
@@ -253,6 +255,8 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
             
             
         }
+        
+        System.out.println(eCount);
         
 
         // testP = new player();
@@ -602,9 +606,13 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
             //----------Set Difficulty Speed------------
             
         if(testP.getDifficulty().equals("Easy")){
+            
             enemyDelay = 250;
             eCount = 1;
             testE2.setDelayEasy();
+            add(testE2);
+            validate();
+            repaint();
             
             if(testE3 != null)
             {
@@ -615,9 +623,13 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         }
         
         if(testP.getDifficulty().equals("Normal")){
+            
             enemyDelay = 200;
             eCount = 1;
             testE2.setDelayNormal();
+            add(testE2);
+            validate();
+            repaint();
             
             if(testE3 != null)
             {
@@ -628,20 +640,31 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         }
         
         if(testP.getDifficulty().equals("Hard")){
+            
             enemyDelay = 100;
             eCount = 2;
-            testE2.setDelayNormal();
             testE3.setDelayHard();
+            add(testE3);
+            testE2.setDelayNormal();
+            add(testE2);
+            validate();
+            repaint();
+            
             //add(testE3);
             //testE3.setDelayHard();
             
         }
         
         if(testP.getDifficulty().equals("Hardest")){
+            
             enemyDelay = 50;
             eCount = 2;
-            testE2.setDelayHard();
             testE3.setDelayHardest();
+            add(testE3);
+            testE2.setDelayHard();
+            add(testE2);
+            validate();
+            repaint();
             //add(testE3);
             //testE3.setDelayHardest();
         }
