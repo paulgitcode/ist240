@@ -99,6 +99,9 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
     ImageIcon floorI;
     JButton floorB;
     
+    JLabel yourScore; // too display score after game is done
+    String scoreResult; //
+    
     gamePanel(mainPanel informedMain)
     {
         super();
@@ -132,16 +135,18 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         scoreB = new scoreBoard();
         scoreFile = "scoresheet.xml";
         scoreStore = new XML_240();
+        scoreResult = "Your score is: ";
         
         //scoreStore.closeWriterXML();
         
         //---------------------------
         
-        //set up timer for jump
+        //Final Score JLabel-------
         
-        
+        yourScore = new JLabel("No score yet.");
         
         //-------------------------
+        
         
         //Floor--------
         
@@ -193,7 +198,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
             testP= new player(); 
         }
         
-
+        
         
         //System.out.println("game - Name="+testP.getName());
         //System.out.println("game - Difficulty="+testP.getDifficulty());
@@ -579,6 +584,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         scoreStore.openWriterXML(scoreFile);
         scoreStore.writeObject(scoreB);
         scoreStore.closeWriterXML();
+        stopGame();
         }
         
         if(bX == testE3.geteX() && bY == testE3.geteY())
@@ -588,6 +594,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         scoreStore.openWriterXML(scoreFile);
         scoreStore.writeObject(scoreB);
         scoreStore.closeWriterXML();
+        stopGame();
         }
     }
     
@@ -623,6 +630,21 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         jumpNumberDown = 0;
         jumpNumber = 0;
         jumpInProgress = 0;
+    }
+    
+    void stopGame()
+    {
+        enemyMove.stop(); // Stop addition of new enemies
+        remove(testE2); // Remove enemy
+        remove(testE3); // Remove enemy
+        yourScore.setText(scoreResult + " " + testP.getScore() + ". " + "You can exit."); // set label text
+        yourScore.setLocation(maxX/2-35, minY/2); // set label location
+        yourScore.setSize(200, 40); // set lable size
+        add(yourScore); // add label
+        
+        validate();
+        repaint();
+        
     }
 
 }
