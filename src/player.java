@@ -16,9 +16,7 @@ public class player extends JButton {
     ImageIcon char_stand; // image icon of standing character
     ImageIcon char_right; // image of moving right
     ImageIcon char_left; // image of moving left
-    String name = "James";
-    String difficulty = "Easy";
-    int sco = 0; // holds the hits
+    options opt;
 
     player() {
         super();
@@ -33,30 +31,27 @@ public class player extends JButton {
         //sco = 0;
         persistObject persist = new persistObject();
 
-        Object ob = persist.readObject();
-        options o = new options();
-        if (options.class.isInstance(ob)) {
-            o = (options) ob;
+        Object o = persist.readObject();
+        opt = new options();
+        if (options.class.isInstance(o)) {
+            opt = (options) o;
         }
-        this.setName(o.getName());
-        this.setDifficulty(o.getDifficulty());
-        this.setScore(o.getScore()); 
     }
 
     public void setName(String n) {
-        this.name = n;
+        opt.setName(n);
     }
 
     public String getName() {
-        return this.name;
+        return opt.getName();
     }
 
     public void setDifficulty(String d) {
-        this.difficulty = d;
+        opt.setDifficulty(d);
     }
 
     public String getDifficulty() {
-        return this.difficulty;
+        return opt.getDifficulty();
     }
 
     void setIconR() {
@@ -73,11 +68,14 @@ public class player extends JButton {
     }
 
     public void setScore(int s) {
-        sco = s;
+        opt.setScore(s);
     }
 
     public int getScore() {
-        return sco;
+        return opt.getScore();
     }
-
+    
+    public options getOptions() {
+        return this.opt;
+    }
 }
