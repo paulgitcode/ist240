@@ -16,6 +16,7 @@ public class mainPanel extends JPanel implements ActionListener {
 
     JLabel l; // about screen label
     JLabel l2; // about screen label
+    JLabel l2a; // about screen label
     JLabel l3; // team member name
     JLabel l4; // unused
     JLabel l5; // team member name
@@ -108,6 +109,7 @@ public class mainPanel extends JPanel implements ActionListener {
 
         l = new JLabel();
         l2 = new JLabel();
+        l2a = new JLabel();
         l3 = new JLabel();
         l4 = new JLabel();
         l5 = new JLabel();
@@ -151,8 +153,10 @@ public class mainPanel extends JPanel implements ActionListener {
             add(p2);
             p2.add(l);
             p2.add(l2);
-            l.setText("IST 240 - Final Project");
-            l2.setText("Team 4");
+            p2.add(l2a);
+            l.setText("IST 240 - Final Project - Team 4");
+            l2.setText("You are a Penn State IST student fighting runaway bugs in your code!");
+            l2a.setText("Get as many of them as you can. One hit and you are done!");
             p2Check = 1;
 
         }

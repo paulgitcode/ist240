@@ -28,10 +28,18 @@ import java.io.*;
  * Character Standing: char_stand.jpg
  * 
  * Image sources:
+ * 
+ * BUGS:
  * http://opengameart.org/content/old-bugs
  * "But if you wish to give me credit, then you can mention "Master484" as the original author, and maybe also put a link to my website: http://m484games.ucoz.com/"
  * 
+ * FLOOR:
  * http://opengameart.org/content/printed-circuit-board-texture
+ * 
+ * CHARACTER:
+ * http://opengameart.org/content/man-walking-animation
+ * 
+ * WEAPON:
  * 
  *
  */

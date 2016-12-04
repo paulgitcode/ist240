@@ -14,6 +14,7 @@ import javax.swing.JButton;
 public class player extends JButton {
 
     ImageIcon char_stand; // image icon of standing character
+    ImageIcon char_standL; // image icon of standing character left
     ImageIcon char_right; // image of moving right
     ImageIcon char_left; // image of moving left
     options opt;
@@ -22,6 +23,7 @@ public class player extends JButton {
         super();
 
         char_stand = new ImageIcon("images/char_idle.jpg");
+        char_standL = new ImageIcon("images/char_idleL.jpg");
         char_right = new ImageIcon("images/char_walk_right.jpg");
         char_left = new ImageIcon("images/char_walk_left.jpg");
 
@@ -65,6 +67,10 @@ public class player extends JButton {
 
     void setIconStand() {
         setIcon(char_stand);
+    }
+    
+    void setIconStandL() {
+        setIcon(char_standL);
     }
 
     public void setScore(int s) {
