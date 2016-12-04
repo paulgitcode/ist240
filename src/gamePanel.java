@@ -782,7 +782,34 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         System.out.print("Successful Hit!");
 
         testP.setScore(testP.getScore()+1);
+        remove(testE2); // Remove enemy
+        validate();
+        repaint();
         System.out.print(testP.getScore());
+        
+        testE2 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
+                
+                if(testP.getDifficulty().equals("Easy"))   
+                {
+                    testE2.setDelayEasy();
+                }
+                
+                if(testP.getDifficulty().equals("Hard"))
+                {
+                    testE2.setDelayNormal();
+                }
+                
+                if(testP.getDifficulty().equals("Hardest"))
+                {
+                    testE2.setDelayHard();
+                }
+                
+                add(testE2);
+                
+                if(gamePaused == false)
+                {
+                    testE2.startE();
+                }
         
         
         }
@@ -792,7 +819,38 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         System.out.print("Successful Hit!");
         
         testP.setScore(testP.getScore()+1);
+        remove(testE3); // Remove enemy
+        validate();
+        repaint();
         System.out.print(testP.getScore());
+        
+                        if(testP.getDifficulty().equals("Hard"))
+                {
+                
+                testE3 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
+                add(testE3);
+                testE3.setDelayHard();
+                
+                if(gamePaused == false)
+                {
+                    testE3.startE();
+                }
+            
+                }
+                
+                if(testP.getDifficulty().equals("Hardest"))
+                {
+                
+                testE3 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
+                add(testE3);
+                testE3.setDelayHardest();
+                
+                if(gamePaused == false)
+                {
+                    testE3.startE();
+                }
+            
+                }
         
         
         }
