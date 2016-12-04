@@ -40,7 +40,7 @@ import java.io.*;
  * http://opengameart.org/content/man-walking-animation
  * 
  * WEAPON:
- * 
+ * http://opengameart.org/content/floppy-disk
  *
  */
 public class gamePanel extends JPanel implements KeyListener, ActionListener
