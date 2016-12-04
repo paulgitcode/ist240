@@ -121,6 +121,9 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
     boolean gameFinished; // is the game over?
     boolean gamePaused; // is the game paused? game screen starts paused so that enemies are not moving. 
     
+    JButton gameOver; // game over button
+    String gameOverText; // text for game over button
+    
     gamePanel(mainPanel informedMain)
     {
         super();
@@ -157,6 +160,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         scoreResult = "Your score is: ";
         gameFinished = false;
         gamePaused = true;
+        gameOverText = "OK.";
         
         //scoreStore.closeWriterXML();
         
@@ -779,6 +783,11 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         yourScore.setLocation(maxX/2-35, minY/2); // set label location
         yourScore.setSize(200, 40); // set lable size
         add(yourScore); // add label
+        gameOver = new JButton();
+        gameOver.setLocation(maxX/2-35, minY/2+30);
+        gameOver.setSize(60, 35);
+        gameOver.setText(gameOverText);
+        add(gameOver);
         
         
         validate();
