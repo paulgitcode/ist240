@@ -161,6 +161,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         gameFinished = false;
         gamePaused = true;
         gameOverText = "OK.";
+        gameOver = new JButton();
         
         //scoreStore.closeWriterXML();
         
@@ -783,7 +784,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         yourScore.setLocation(maxX/2-35, minY/2); // set label location
         yourScore.setSize(200, 40); // set lable size
         add(yourScore); // add label
-        gameOver = new JButton();
+        
         gameOver.setLocation(maxX/2-35, minY/2+30);
         gameOver.setSize(60, 35);
         gameOver.setText(gameOverText);
@@ -868,6 +869,112 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
                 }
             
                 }
+    }
+    
+    public void resetGame()
+    {
+        
+        requestFocusInWindow();
+        testP.setScore(0);
+        gameFinished = false;
+        gamePaused = true;
+        
+        pDirect = 0;
+        eCount = 1;
+        
+        if(testE3 != null)
+            {
+                remove(testE3);
+                validate();
+                repaint();
+            }
+        
+        if(testE2 != null)
+        {
+                remove(testE2);
+                validate();
+                repaint();
+        }
+        
+        if(yourScore != null)
+        {
+            remove(yourScore);
+            validate();
+            repaint();
+        }
+        
+        if(gameOver != null)
+        {
+            remove(gameOver);
+            validate();
+            repaint();
+        }
+        
+        testE3 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
+        testE2 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
+        
+        if(testP.getDifficulty().equals("Easy")){
+            enemyDelay = 250;
+            eCount = 1;
+            testE2.setDelayEasy();
+            add(testE2);
+            validate();
+            repaint();
+            
+            if(testE3 != null)
+            {
+                remove(testE3);
+                validate();
+                repaint();
+            }
+        }
+        
+        if(testP.getDifficulty().equals("Normal")){
+            enemyDelay = 200;
+            eCount = 1;
+            testE2.setDelayNormal();
+            add(testE2);
+            validate();
+            repaint();
+            
+            if(testE3 != null)
+            {
+                remove(testE3);
+                validate();
+                repaint();
+            }
+        }
+        
+        if(testP.getDifficulty().equals("Hard")){
+            enemyDelay = 100;
+            eCount = 2;
+            testE3.setDelayHard();
+            add(testE3);
+            testE2.setDelayNormal();
+            add(testE2);
+            validate();
+            repaint();
+            
+            
+            
+        }
+        
+        if(testP.getDifficulty().equals("Hardest")){
+            enemyDelay = 50;
+            eCount = 2;
+            testE3.setDelayHardest();
+            add(testE3);
+            testE2.setDelayHard();
+            add(testE2);
+            validate();
+            repaint();
+            
+            
+        }
+        
+        enemyMove.start();
+        unPause();
+        
     }
 
 }

@@ -37,7 +37,8 @@ public class mainJFrame extends JFrame implements ActionListener
            setSize (640, 480);
            setVisible(true);
            
-           menuP.b5.addActionListener(this);          
+           menuP.b5.addActionListener(this);
+           gameP.gameOver.addActionListener(this);
         }
 
     @Override
@@ -47,11 +48,21 @@ public class mainJFrame extends JFrame implements ActionListener
            
             screenP.setVisible(false);
             menuP.setVisible(false);
+            gameP.setVisible(true);
             getContentPane().setLayout(new BorderLayout());
             getContentPane().add(gameP,"Center");
-            gameP.unPause();
+            gameP.resetGame();
+            //gameP.unPause();
             setDefaultCloseOperation(EXIT_ON_CLOSE);
             setSize (640, 480);
+        }
+        
+        if(obj == gameP.gameOver)
+        {
+            gameP.setVisible(false);
+            screenP.setVisible(true);
+            menuP.setVisible(true);
+            
         }
     }    
 }
