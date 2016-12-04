@@ -466,7 +466,14 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         
         if(k==e.VK_RIGHT || k==e.VK_LEFT )
         {
-            testP.setIconStand();
+            if(pDirect == 0){
+                testP.setIconStand();
+            }
+            
+            if(pDirect == 1){
+                testP.setIconStandL();
+            }
+            
             moveR.stop();
             moveL.stop();
             checkCollision();
