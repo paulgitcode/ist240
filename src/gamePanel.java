@@ -508,29 +508,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
                 validate();
                 repaint();
 
-                testE2 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
-                
-                if(testP.getDifficulty().equals("Easy"))   
-                {
-                    testE2.setDelayEasy();
-                }
-                
-                if(testP.getDifficulty().equals("Hard"))
-                {
-                    testE2.setDelayNormal();
-                }
-                
-                if(testP.getDifficulty().equals("Hardest"))
-                {
-                    testE2.setDelayHard();
-                }
-                
-                add(testE2);
-                
-                if(gamePaused == false)
-                {
-                    testE2.startE();
-                }
+                addE2();
 
             }
             
@@ -542,33 +520,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
                 validate();
                 repaint();
                 
-                if(testP.getDifficulty().equals("Hard"))
-                {
-                
-                testE3 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
-                add(testE3);
-                testE3.setDelayHard();
-                
-                if(gamePaused == false)
-                {
-                    testE3.startE();
-                }
-            
-                }
-                
-                if(testP.getDifficulty().equals("Hardest"))
-                {
-                
-                testE3 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
-                add(testE3);
-                testE3.setDelayHardest();
-                
-                if(gamePaused == false)
-                {
-                    testE3.startE();
-                }
-            
-                }
+               addE3();
 
             }
                             
@@ -787,29 +739,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         repaint();
         System.out.print(testP.getScore());
         
-        testE2 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
-                
-                if(testP.getDifficulty().equals("Easy"))   
-                {
-                    testE2.setDelayEasy();
-                }
-                
-                if(testP.getDifficulty().equals("Hard"))
-                {
-                    testE2.setDelayNormal();
-                }
-                
-                if(testP.getDifficulty().equals("Hardest"))
-                {
-                    testE2.setDelayHard();
-                }
-                
-                add(testE2);
-                
-                if(gamePaused == false)
-                {
-                    testE2.startE();
-                }
+        addE2();
         
         
         }
@@ -824,33 +754,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         repaint();
         System.out.print(testP.getScore());
         
-                        if(testP.getDifficulty().equals("Hard"))
-                {
-                
-                testE3 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
-                add(testE3);
-                testE3.setDelayHard();
-                
-                if(gamePaused == false)
-                {
-                    testE3.startE();
-                }
-            
-                }
-                
-                if(testP.getDifficulty().equals("Hardest"))
-                {
-                
-                testE3 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
-                add(testE3);
-                testE3.setDelayHardest();
-                
-                if(gamePaused == false)
-                {
-                    testE3.startE();
-                }
-            
-                }
+        addE3();
         
         
         }
@@ -895,6 +799,66 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
             
             gamePaused = false;
         }
+    }
+    
+    // ---- Add a new E2 enemy
+    void addE2()
+    {
+        testE2 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
+                
+                if(testP.getDifficulty().equals("Easy"))   
+                {
+                    testE2.setDelayEasy();
+                }
+                
+                if(testP.getDifficulty().equals("Hard"))
+                {
+                    testE2.setDelayNormal();
+                }
+                
+                if(testP.getDifficulty().equals("Hardest"))
+                {
+                    testE2.setDelayHard();
+                }
+                
+                add(testE2);
+                
+                if(gamePaused == false)
+                {
+                    testE2.startE();
+                }
+    }
+    
+    //--------- Add a new E3 enemy
+    void addE3()
+    {
+                if(testP.getDifficulty().equals("Hard"))
+                {
+                
+                testE3 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
+                add(testE3);
+                testE3.setDelayHard();
+                
+                if(gamePaused == false)
+                {
+                    testE3.startE();
+                }
+            
+                }
+                
+                if(testP.getDifficulty().equals("Hardest"))
+                {
+                
+                testE3 = new enemy(maxY, minY, maxX, minX, decreaseX, enemyDelay);
+                add(testE3);
+                testE3.setDelayHardest();
+                
+                if(gamePaused == false)
+                {
+                    testE3.startE();
+                }
+            
+                }
     }
 
 }
