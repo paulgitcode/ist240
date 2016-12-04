@@ -104,6 +104,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
     int sH; // height of sword button
     
     JButton swordB; //
+    ImageIcon sordL; //
     
     int pDirect; // set direction of character based on movement - 0: right, 1: left
     
@@ -195,8 +196,9 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         //set value of width and height of button. Character icon is 30 width, 32 height
         bWidth = 30;
         bHeight = 32;
-        sW = 15;
-        sH = 5;
+        sW = 20;
+        sH = 15;
+        sordL = new ImageIcon("images/sword.jpg");
         //----------------------------------
         
         // set initial values of coordinates for button
@@ -337,6 +339,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         
         swordB = new JButton();
         add(swordB);
+        swordB.setIcon(sordL);
         swordB.setVisible(false);
         
         
@@ -405,6 +408,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
                 sY = bY+10;
                 swordB.setBounds(sX,sY , sW, sH);
             }
+            swordB.setIcon(sordL);
             swordB.setVisible(true);
             checkAttack();
             
@@ -481,6 +485,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         
         if(k==e.VK_DOWN){
             swordB.setVisible(false);
+            
         }
     
     };
