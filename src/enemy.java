@@ -1,6 +1,7 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
 /*
@@ -40,6 +41,9 @@ public class enemy extends player implements ActionListener
     int collisionXmax; // 
     int collisionXmin; //
     
+    ImageIcon enem_stand; // icon for enemies, Right
+    ImageIcon enem_standL; // icon for enemies, Left
+    
     enemy(int inmaxY, int inminY, int inmaxX, int inminX, int indecreaseX, int inenemyDelay)
     {
         super();
@@ -51,6 +55,10 @@ public class enemy extends player implements ActionListener
   
         bWidth = 30;
         bHeight = 32;
+        
+        enem_stand = new ImageIcon("images/eStand.jpg");
+        enem_standL = new ImageIcon("images/eStandL.jpg");
+        
  
         //randD = Math.random();
         //direction = (int)(randD*1);
@@ -67,6 +75,7 @@ public class enemy extends player implements ActionListener
             eX = maxX;
             eY = minY;
             setBounds(eX, eY, bWidth, bHeight);
+            setIcon(enem_standL);
         }
         
         if (direction == 1){
@@ -74,6 +83,7 @@ public class enemy extends player implements ActionListener
             eX = minX;
             eY = minY;
             setBounds(eX,eY, bWidth, bHeight);
+            setIcon(enem_stand);
         }
     }
     
