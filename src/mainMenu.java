@@ -30,7 +30,7 @@ public class mainMenu extends JPanel
         b4 = new JButton("How to Play");
         b5 = new JButton("Start Game");
         b6 = new JButton("Scores");
-        la1 = new titleJLabel("The Side Scroller");
+        la1 = new titleJLabel("IST Bug Hunter");
               
         add(la1);
         add(b1);
