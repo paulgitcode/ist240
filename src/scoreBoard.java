@@ -1,5 +1,6 @@
 
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.Vector;
 import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;
@@ -56,11 +57,14 @@ public class scoreBoard {
         jt.setAutoCreateRowSorter(true);
         jt.enable(false);
 
-        for (int idx = 1; idx <= 10; idx++) {
+        Enumeration e = scores.elements(); 
+
+        while(e.hasMoreElements()) {
+            options o= (options) e.nextElement();
             Vector<Object> data = new Vector<Object>();
-            data.add("Name " + String.format("%03d", idx));
-            data.add("Difficulty " + String.format("%03d", idx));
-            data.add(String.format("%05d", (int) (Math.random() * 100 * idx)));
+            data.add(o.getName());
+            data.add(o.getDifficulty());
+            data.add(String.format("%05d", o.getScore()));
             model.addRow(data);
         }
 

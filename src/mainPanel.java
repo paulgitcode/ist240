@@ -274,6 +274,8 @@ public class mainPanel extends JPanel implements ActionListener {
                 p5Check = 0;
                 remove(p6);
                 p6Check = 0;
+                remove(p7);
+                p7Check = 0;
 
                 revalidate();
                 repaint();
