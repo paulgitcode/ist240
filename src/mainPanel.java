@@ -294,7 +294,7 @@ public class mainPanel extends JPanel implements ActionListener {
             }
             add(p7);
             p7.add(l11);
-            l11.setText(testScore + mainScore.getScore());
+            //js l11.setText(testScore + mainScore.getScore());
             
             persistObject persist= new persistObject();
             p7.add(persist.displayXML());

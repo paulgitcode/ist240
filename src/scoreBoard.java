@@ -1,3 +1,4 @@
+import java.util.Vector;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,30 +11,27 @@
  */
 public class scoreBoard {
     
-    private int score;
+    private Vector scores;
     
     public scoreBoard()
     {
-        
+        scores=new Vector();
     }
     
-    public void setBoard(int s)
+    public void setBoard(Vector v)
     {
-        setScore(s);
+        scores=v;
     }
 
     /**
      * @return the score
      */
-    public int getScore() {
-        return score;
-    }
-
-    /**
-     * @param score the score to set
-     */
-    public void setScore(int score) {
-        this.score = score;
+    public Vector getScores() {
+        return scores;
     }
     
+    public void addScore(options o){
+        scores.add(o);
+    }
+            
 }

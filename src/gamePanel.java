@@ -693,9 +693,9 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
                 )
         {
         System.out.println("Collision!");
-        scoreB.setBoard(testP.getScore());
+        scoreB.addScore(testP.getOptions());
         scoreStore.openWriterXML(scoreFile);
-        scoreStore.writeObject(scoreB);
+        scoreStore.writeObject(scoreB.getScores());
         scoreStore.closeWriterXML();
         stopGame();
         }
@@ -717,9 +717,9 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
                 )
         {
         System.out.println("Collision!");
-        scoreB.setBoard(testP.getScore());
+        scoreB.addScore(testP.getOptions());
         scoreStore.openWriterXML(scoreFile);
-        scoreStore.writeObject(scoreB);
+        scoreStore.writeObject(scoreB.getScores());
         scoreStore.closeWriterXML();
         stopGame();
         }
