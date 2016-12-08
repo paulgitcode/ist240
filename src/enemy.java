@@ -14,8 +14,7 @@ import javax.swing.Timer;
  *
  * @author Paul
  */
-public class enemy extends player implements ActionListener 
-{
+public class enemy extends player implements ActionListener {
     
     int maxY; // max y value to check edge of screen
     int minY; // min y value to check edge of screen
@@ -44,8 +43,7 @@ public class enemy extends player implements ActionListener
     ImageIcon enem_stand; // icon for enemies, Right
     ImageIcon enem_standL; // icon for enemies, Left
     
-    enemy(int inmaxY, int inminY, int inmaxX, int inminX, int indecreaseX, int inenemyDelay)
-    {
+    enemy(int inmaxY, int inminY, int inmaxX, int inminX, int indecreaseX, int inenemyDelay){
         super();
         
         maxY = inmaxY;
@@ -59,9 +57,6 @@ public class enemy extends player implements ActionListener
         enem_stand = new ImageIcon("images/eStand.jpg");
         enem_standL = new ImageIcon("images/eStandL.jpg");
         
- 
-        //randD = Math.random();
-        //direction = (int)(randD*1);
         direction = ranDirection();
         
         decreaseX = indecreaseX;
@@ -69,7 +64,6 @@ public class enemy extends player implements ActionListener
         
         enemyDelay = inenemyDelay;
         enemyMove = new Timer(enemyDelay, this);
-        //enemyMove.start();
         
         if (direction == 0){
             eX = maxX;
@@ -79,7 +73,6 @@ public class enemy extends player implements ActionListener
         }
         
         if (direction == 1){
-            
             eX = minX;
             eY = minY;
             setBounds(eX,eY, bWidth, bHeight);
@@ -87,99 +80,76 @@ public class enemy extends player implements ActionListener
         }
     }
     
-    public void actionPerformed(ActionEvent e)
-    {
-
-        
+    public void actionPerformed(ActionEvent e){
         Object obj = e.getSource();
         
-        if((obj == enemyMove) && (direction == 0))
-        {
- 
+        if((obj == enemyMove) && (direction == 0)){
             eX = eX+decreaseX;
             setBounds(eX,eY ,bWidth ,bHeight );
-              
         }
         
-        if((obj == enemyMove) && (direction == 1))
-        {
+        if((obj == enemyMove) && (direction == 1)){
             eX = eX+increaseX;
             setBounds(eX,eY ,bWidth ,bHeight );
         }
-        
     }
     
-    int geteX()
-    {
+    int geteX(){
         return eX;
     }
     
-    int geteY()
-    {
+    int geteY(){
         return eY;
     }
     
-    int ranDirection()
-    {
+    int ranDirection(){
         randD = Math.random();
         int tempD = (int)(randD*2);
         return tempD;
     }
     
-    void setDelayHardest()
-    {
-        
+    void setDelayHardest(){
         enemyMove.stop();
         enemyDelay = 20;
         enemyMove = new Timer(enemyDelay, this);
-        //enemyMove.start();
     }
     
-    void setDelayHard()
-    {
+    void setDelayHard(){
         enemyMove.stop();
         enemyDelay = 75;
         enemyMove = new Timer(enemyDelay, this);
-        //enemyMove.start();
     }
     
-    void setDelayEasy()
-    {
+    void setDelayEasy(){
         enemyMove.stop();
         enemyDelay = 500;
         enemyMove = new Timer(enemyDelay, this);
     }
     
-    void setDelayNormal()
-    {
+    void setDelayNormal(){
         enemyMove.stop();
         enemyDelay = 200;
         enemyMove = new Timer(enemyDelay, this);
     }
     
-    public void stopE()
-    {
+    public void stopE(){
         enemyMove.stop();
     }
     
-    public void startE()
-    {
+    public void startE(){
         enemyMove.start();
     }
     
-    public void setupCollision()
-    {
+    public void setupCollision(){
         collisionXmax = eX + 20;
         collisionXmin = eX - 20;
     }
     
-    public int getCollisionMax()
-    {
+    public int getCollisionMax(){
         return collisionXmax;
     }
     
-    public int getCollisionMin()
-    {
+    public int getCollisionMin(){
         return collisionXmin;
     }
 }

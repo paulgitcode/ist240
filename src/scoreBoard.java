@@ -12,13 +12,10 @@ public class scoreBoard {
     
     private int score;
     
-    public scoreBoard()
-    {
-        
+    public scoreBoard(){
     }
     
-    public void setBoard(int s)
-    {
+    public void setBoard(int s){
         setScore(s);
     }
 

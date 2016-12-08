@@ -30,7 +30,6 @@ public class player extends JButton {
         setIcon(char_stand);
         setBorderPainted(false); // remove button border
 
-        //sco = 0;
         persistObject persist = new persistObject();
 
         Object o = persist.readObject();
@@ -62,7 +61,6 @@ public class player extends JButton {
 
     void setIconL() {
         setIcon(char_left);
-
     }
 
     void setIconStand() {

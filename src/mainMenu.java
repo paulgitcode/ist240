@@ -8,8 +8,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class mainMenu extends JPanel
-{
+public class mainMenu extends JPanel{
     JButton b1;
     JButton b2;
     JButton b3;
@@ -18,8 +17,7 @@ public class mainMenu extends JPanel
     JButton b6;
     titleJLabel la1;
     
-    public mainMenu()
-    {
+    public mainMenu(){
         super();
         
         setBackground(Color.gray);

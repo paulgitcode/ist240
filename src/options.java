@@ -16,8 +16,7 @@ public class options
     String difficulty="Easy";
     int sco=0; // holds the hits
 
-    public options()
-    {
+    public options(){
         super();
     }
         
@@ -37,13 +36,11 @@ public class options
         return this.difficulty;
     }
     
-    public void setScore(int s)
-    {
+    public void setScore(int s){
        sco = s;
     }
     
-    public int getScore()
-    {
+    public int getScore(){
         return sco;
     }
 }

@@ -9,14 +9,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
-public class mainJFrame extends JFrame implements ActionListener
-{
+public class mainJFrame extends JFrame implements ActionListener{
     gamePanel gameP;
     mainPanel screenP;
     mainMenu menuP;
     
-        public mainJFrame()
-        {
+        public mainJFrame(){
            super("Main Menu");
              
            menuP = new mainMenu();
@@ -45,24 +43,20 @@ public class mainJFrame extends JFrame implements ActionListener
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
         if(obj == menuP.b5) {
-           
             screenP.setVisible(false);
             menuP.setVisible(false);
             gameP.setVisible(true);
             getContentPane().setLayout(new BorderLayout());
             getContentPane().add(gameP,"Center");
             gameP.resetGame();
-            //gameP.unPause();
             setDefaultCloseOperation(EXIT_ON_CLOSE);
             setSize (640, 480);
         }
         
-        if(obj == gameP.gameOver)
-        {
+        if(obj == gameP.gameOver){
             gameP.setVisible(false);
             screenP.setVisible(true);
             menuP.setVisible(true);
-            
         }
     }    
 }

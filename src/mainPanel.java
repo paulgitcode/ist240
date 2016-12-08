@@ -46,7 +46,6 @@ public class mainPanel extends JPanel implements ActionListener {
     Timer tim;
     int counter = 3;
             
-              
     mainMenu mainin;
     mainJFrame mainFrame;
     
@@ -77,7 +76,7 @@ public class mainPanel extends JPanel implements ActionListener {
         readScore.closeReaderXML();
         
         mainin = informedPanel;
-        //mainFrame = informedFrame;
+        
         p2Check = 0;
         p3Check = 0;
         p4Check = 0;
@@ -124,7 +123,6 @@ public class mainPanel extends JPanel implements ActionListener {
         player = new JTextField(20);
         save= new JButton("SAVE");
         save.addActionListener(this);
-
     }
 
     @Override
@@ -132,7 +130,6 @@ public class mainPanel extends JPanel implements ActionListener {
         Object obj = e.getSource();
 
         if (obj == mainin.b1) {
-
             if (p2Check != 1) {
                 remove(p3);
                 p3Check = 0;
@@ -145,11 +142,9 @@ public class mainPanel extends JPanel implements ActionListener {
                 remove(p7);
                 p7Check = 0;
 
-
                 revalidate();
                 repaint();
             }
-
             add(p2);
             p2.add(l);
             p2.add(l2);
@@ -160,9 +155,9 @@ public class mainPanel extends JPanel implements ActionListener {
             p2Check = 1;
 
         }
-        //Team menu
+        
+        ////Team menu////
         if (obj == mainin.b2) {
-
             if (p3Check != 1) {
                 remove(p2);
                 p2Check = 0;
@@ -178,7 +173,6 @@ public class mainPanel extends JPanel implements ActionListener {
                 revalidate();
                 repaint();
             }
-
             add(p3);
             p3.add(l3);
             p3.add(l5);
@@ -188,11 +182,10 @@ public class mainPanel extends JPanel implements ActionListener {
             l5.setText("Brad Reamer");
             l7.setText("Matthew Calderon");
             l9.setText("Jasmeet Singh");
-
             p3Check = 1;
-
         }
-        //Options menu
+        
+        ////Options menu////
         if (obj == mainin.b3) {
             if (p4Check != 1) {
                 remove(p2);
@@ -234,14 +227,11 @@ public class mainPanel extends JPanel implements ActionListener {
             if(options.class.isInstance(ob))
                 o= (options) ob;
 
-            // System.out.println("Name="+o.getName());
-            // System.out.println("Difficulty="+o.getDifficulty());
             player.setText(o.getName());
             difficulty.setSelectedItem(o.getDifficulty());
             persist.writeObject(o);
 
             p4Check = 1;
-
         }
         if (obj == save) {
             persistObject persist= new persistObject();
@@ -250,7 +240,8 @@ public class mainPanel extends JPanel implements ActionListener {
             o.setDifficulty((String)difficulty.getSelectedItem());
             persist.writeObject(o);
         }
-        // How to Play menu
+        
+        //// How to Play menu////
         if (obj == mainin.b4) {
             if (p5Check != 1) {
                 remove(p2);
@@ -273,9 +264,9 @@ public class mainPanel extends JPanel implements ActionListener {
             l6.setText("Press the Spacebar to jump");
             l8.setText("Press the left and right arrow keys to move and down arrow to attack");
             p5Check = 1;
-
         }
-        // Scores menu
+        
+        //// Scores menu////
         if (obj == mainin.b6) {
             if (p6Check != 1) {
                 remove(p2);
@@ -299,44 +290,10 @@ public class mainPanel extends JPanel implements ActionListener {
             persistObject persist= new persistObject();
             p7.add(persist.displayXML());
             p7Check = 1;
-
         }
-        
 
-        /* doesn't currently function with gamePanel implementation
-        
-        
-        if (obj == mainin.b5) {
-            if (p6Check != 1) {
-                
-                remove(p2);
-                p2Check = 0;
-                remove(p3);
-                p3Check = 0;
-                remove(p4);
-                p4Check = 0;
-                remove(p5);
-                p5Check = 0;
-
-                revalidate();
-                repaint();
-            }
-
-            add(p6);
-
-            p6.add(l10);
-            l10.setText("Begin Countdown");
-            
-            tim = new Timer(1000, this);
-            tim.start();
-           
-            p6Check = 1;
-        }
-        */
-        if (obj == tim)
-        {
-            if (counter == 0)
-            {
+        if (obj == tim){
+            if (counter == 0){
                 tim.stop();
                 l10.setText("BEGIN!");
                 counter = 3;
@@ -344,7 +301,6 @@ public class mainPanel extends JPanel implements ActionListener {
             }
             l10.setText("Begin in:"+counter);
             counter--;
-            
         }
     }
 }
