@@ -13,9 +13,17 @@ public class scoreBoard {
     
     private Vector scores;
     
+    XML_240 readScore; // XML reader for score
+    
+    String mainScoreFile = "scoresheet.xml";
+    
     public scoreBoard()
     {
-        scores=new Vector();
+        //scores=new Vector();
+        readScore = new XML_240();
+        readScore.openReaderXML(mainScoreFile);
+        scores=(Vector) readScore.ReadObject();
+        readScore.closeReaderXML();
     }
     
     public void setBoard(Vector v)

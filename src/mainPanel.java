@@ -60,10 +60,7 @@ public class mainPanel extends JPanel implements ActionListener {
 
     JButton save; // save options
     
-    XML_240 readScore; // XML reader for score
-    
-    String mainScoreFile = "scoresheet.xml";
-    
+   
     scoreBoard mainScore;
     
     public mainPanel(mainMenu informedPanel) {
@@ -71,13 +68,7 @@ public class mainPanel extends JPanel implements ActionListener {
         setBackground(Color.white);
         
         testScore = "Last Score is: ";
-        
-        readScore = new XML_240();
-        readScore.openReaderXML(mainScoreFile);
-        mainScore = new scoreBoard();
-        //mainScore.addScore((Vector) readScore.ReadObject());
-        readScore.closeReaderXML();
-        
+     
         mainin = informedPanel;
         //mainFrame = informedFrame;
         p2Check = 0;
