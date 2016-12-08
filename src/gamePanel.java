@@ -479,19 +479,19 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
             
             if((bX == testE2.geteX() || ( bX <= testE2.collisionXmax && bX >= testE2.collisionXmin))&& bY == testE2.geteY()){
                 System.out.println("Collision!");
-                scoreB.setBoard(testP.getScore());
+                scoreB.addScore(testP.getOptions());
                 scoreStore.openWriterXML(scoreFile);
                 scoreStore.writeObject(scoreB);
                 scoreStore.closeWriterXML();
                 stopGame();
             }
-        
+
             if(eCount == 2){
                 testE3.setupCollision();
   
                 if((bX == testE3.geteX() || ( bX <= testE3.collisionXmax && bX >= testE3.collisionXmin))&& bY == testE3.geteY()){
                     System.out.println("Collision!");
-                    scoreB.setBoard(testP.getScore());
+                    scoreB.addScore(testP.getOptions());
                     scoreStore.openWriterXML(scoreFile);
                     scoreStore.writeObject(scoreB);
                     scoreStore.closeWriterXML();

@@ -41,7 +41,7 @@ public class persistObject {
         xml.closeWriterXML();
     }
         
-    public JScrollPane displayXML(){
+/*    public JScrollPane displayXML(){
         DefaultTableModel model = new DefaultTableModel(0, 0);
         String[] cols = {"Name", "Difficulty", "Score", "Date"};
         model.setColumnIdentifiers(cols);
@@ -64,4 +64,5 @@ public class persistObject {
         scrollPane.setBorder(BorderFactory.createTitledBorder ("Score Board [Click on Header to Sort]"));
         return scrollPane;
     }
+*/
 }

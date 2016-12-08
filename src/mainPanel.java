@@ -8,9 +8,6 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
-import java.io.*;
-import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableModel;
 
 public class mainPanel extends JPanel implements ActionListener {
 
@@ -57,24 +54,13 @@ public class mainPanel extends JPanel implements ActionListener {
     int p7Check;
 
     JButton save; // save options
-    
-    XML_240 readScore; // XML reader for score
-    
-    String mainScoreFile = "scoresheet.xml";
-    
-    scoreBoard mainScore;
-    
+      
     public mainPanel(mainMenu informedPanel) {
         super();
         setBackground(Color.white);
         
         testScore = "Last Score is: ";
-        
-        readScore = new XML_240();
-        readScore.openReaderXML(mainScoreFile);
-        mainScore = (scoreBoard) readScore.ReadObject();
-        readScore.closeReaderXML();
-        
+     
         mainin = informedPanel;
         
         p2Check = 0;
@@ -279,16 +265,18 @@ public class mainPanel extends JPanel implements ActionListener {
                 p5Check = 0;
                 remove(p6);
                 p6Check = 0;
+                remove(p7);
+                p7Check = 0;
 
                 revalidate();
                 repaint();
             }
             add(p7);
             p7.add(l11);
-            l11.setText(testScore + mainScore.getScore());
+            scoreBoard mainScore=new scoreBoard();
+            //js l11.setText(testScore + mainScore.getScore());
             
-            persistObject persist= new persistObject();
-            p7.add(persist.displayXML());
+            p7.add(mainScore.displayXML());
             p7Check = 1;
         }
 
