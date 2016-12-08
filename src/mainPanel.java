@@ -9,6 +9,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.io.*;
+import java.util.Vector;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
@@ -73,7 +74,8 @@ public class mainPanel extends JPanel implements ActionListener {
         
         readScore = new XML_240();
         readScore.openReaderXML(mainScoreFile);
-        mainScore = (scoreBoard) readScore.ReadObject();
+        mainScore = new scoreBoard();
+        //mainScore.addScore((Vector) readScore.ReadObject());
         readScore.closeReaderXML();
         
         mainin = informedPanel;

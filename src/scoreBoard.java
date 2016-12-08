@@ -7,7 +7,7 @@ import java.util.Vector;
 
 /**
  *
- * @author Paul
+ * @author Paul, Jasmeet
  */
 public class scoreBoard {
     
