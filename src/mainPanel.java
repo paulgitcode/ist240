@@ -8,10 +8,6 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
-import java.io.*;
-import java.util.Vector;
-import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableModel;
 
 public class mainPanel extends JPanel implements ActionListener {
 
@@ -59,10 +55,7 @@ public class mainPanel extends JPanel implements ActionListener {
     int p7Check;
 
     JButton save; // save options
-    
-   
-    scoreBoard mainScore;
-    
+      
     public mainPanel(mainMenu informedPanel) {
         super();
         setBackground(Color.white);
@@ -287,10 +280,10 @@ public class mainPanel extends JPanel implements ActionListener {
             }
             add(p7);
             p7.add(l11);
+            scoreBoard mainScore=new scoreBoard();
             //js l11.setText(testScore + mainScore.getScore());
             
-            persistObject persist= new persistObject();
-            p7.add(persist.displayXML());
+            p7.add(mainScore.displayXML());
             p7Check = 1;
 
         }
