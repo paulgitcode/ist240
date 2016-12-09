@@ -65,5 +65,27 @@
   <void method="add">
    <object idref="options1"/>
   </void>
+  <void method="add">
+   <object class="options" id="options2">
+    <void property="difficulty">
+     <string>Hard</string>
+    </void>
+    <void property="name">
+     <string>Paul</string>
+    </void>
+    <void property="score">
+     <int>1</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object idref="options2"/>
+  </void>
+  <void method="add">
+   <object idref="options2"/>
+  </void>
+  <void method="add">
+   <object idref="options2"/>
+  </void>
  </object>
 </java>
