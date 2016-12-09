@@ -102,7 +102,6 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
     ////Player Data & Score////
     String pName;// Holds player name from mainPanel
     String dText; // Holds difficulty from mainPanel
-    String scoreFile ; // string to hold score xml file name
     String scoreResult; //final score
     JLabel diffL; // label for difficulty level
     scoreBoard scoreB; // create scoreboard class to store scores and other data
