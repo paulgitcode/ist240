@@ -29,9 +29,11 @@ public class scoreBoard {
         readScore = new XML_240();
         readScore.openReaderXML(mainScoreFile);
         Object v = readScore.ReadObject();
-        scores = new Vector();
         if (Vector.class.isInstance(v)) {
             scores = (Vector) v;
+        }
+        else {
+            scores = new Vector();
         }
         readScore.closeReaderXML();
     }
