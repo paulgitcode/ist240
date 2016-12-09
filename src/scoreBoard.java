@@ -37,13 +37,6 @@ public class scoreBoard {
         readScore.closeReaderXML();
     }
 
-    /**
-     * @return the score
-     */
-    public Vector getScores() {
-        return scores;
-    }
-
     public void addScore(options o) {
         scores.add(o);
     }
