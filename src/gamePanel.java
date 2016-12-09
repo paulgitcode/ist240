@@ -105,7 +105,6 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
     String scoreFile ; // string to hold score xml file name
     String scoreResult; //final score
     JLabel diffL; // label for difficulty level
-    XML_240 scoreStore; // xml reader and writer class object to store score data
     scoreBoard scoreB; // create scoreboard class to store scores and other data
     JLabel yourScore; // to display score after game is done
     
@@ -181,8 +180,6 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         
         ////scoreboard////
         scoreB = new scoreBoard();
-        scoreFile = "scoresheet.xml";
-        scoreStore = new XML_240();
         scoreResult = "Game Over. Your score is: ";
         yourScore = new JLabel("No score yet.");// final score jlabel
         
@@ -480,9 +477,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
             if((bX == testE2.geteX() || ( bX <= testE2.collisionXmax && bX >= testE2.collisionXmin))&& bY == testE2.geteY()){
                 System.out.println("Collision!");
                 scoreB.addScore(testP.getOptions());
-                scoreStore.openWriterXML(scoreFile);
-                scoreStore.writeObject(scoreB.getScores());
-                scoreStore.closeWriterXML();
+                scoreB.saveXML();
                 stopGame();
             }
 
@@ -492,9 +487,7 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
                 if((bX == testE3.geteX() || ( bX <= testE3.collisionXmax && bX >= testE3.collisionXmin))&& bY == testE3.geteY()){
                     System.out.println("Collision!");
                     scoreB.addScore(testP.getOptions());
-                    scoreStore.openWriterXML(scoreFile);
-                    scoreStore.writeObject(scoreB.getScores());
-                    scoreStore.closeWriterXML();
+                    scoreB.saveXML();
                     stopGame();
                 }
             }

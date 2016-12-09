@@ -21,13 +21,12 @@ public class scoreBoard {
 
     private Vector scores;
 
-    XML_240 readScore; // XML reader for score
-
-    String mainScoreFile = "scoresheet.xml";
+    String scoreFile = "scoresheet.xml";
 
     public scoreBoard() {
+        XML_240 readScore; // XML reader for score
         readScore = new XML_240();
-        readScore.openReaderXML(mainScoreFile);
+        readScore.openReaderXML(scoreFile);
         Object v = readScore.ReadObject();
         if (Vector.class.isInstance(v)) {
             scores = (Vector) v;
@@ -73,5 +72,13 @@ public class scoreBoard {
         JScrollPane scrollPane = new JScrollPane(jt);
         scrollPane.setBorder(BorderFactory.createTitledBorder("Score Board [Click on Header to Sort]"));
         return scrollPane;
+    }
+    
+    public void saveXML(){
+        XML_240 saveScore; // XML reader for score
+        saveScore = new XML_240();
+        saveScore.openWriterXML(scoreFile);
+        saveScore.writeObject(scores);
+        saveScore.closeWriterXML();
     }
 }
