@@ -613,6 +613,9 @@ public class gamePanel extends JPanel implements KeyListener, ActionListener
         gamePaused = true;
         pDirect = 0;
         eCount = 1;
+        bX = maxX/2; //player x coord
+        bY = minY;//player y coord
+        testP.setBounds(bX,bY ,bWidth ,bHeight );
         
         if(testE3 != null){
             remove(testE3);

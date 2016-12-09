@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.8.0_111" class="java.beans.XMLDecoder">
+<java version="1.8.0_102" class="java.beans.XMLDecoder">
  <object class="java.util.Vector">
   <void method="add">
    <object class="options">
@@ -10,6 +10,60 @@
      <int>1</int>
     </void>
    </object>
+  </void>
+  <void method="add">
+   <object class="options" id="options0">
+    <void property="difficulty">
+     <string>Hard</string>
+    </void>
+    <void property="name">
+     <string>Paul</string>
+    </void>
+    <void property="score">
+     <int>3</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object idref="options0"/>
+  </void>
+  <void method="add">
+   <object idref="options0"/>
+  </void>
+  <void method="add">
+   <object class="options">
+    <void property="difficulty">
+     <string>Hard</string>
+    </void>
+    <void property="name">
+     <string>Paul</string>
+    </void>
+    <void property="score">
+     <int>4</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="options" id="options1">
+    <void property="difficulty">
+     <string>Normal</string>
+    </void>
+    <void property="name">
+     <string>Paul</string>
+    </void>
+    <void property="score">
+     <int>5</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object idref="options1"/>
+  </void>
+  <void method="add">
+   <object idref="options1"/>
+  </void>
+  <void method="add">
+   <object idref="options1"/>
   </void>
  </object>
 </java>
