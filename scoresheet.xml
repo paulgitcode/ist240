@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.8.0_102" class="java.beans.XMLDecoder">
+<java version="1.8.0_144" class="java.beans.XMLDecoder">
  <object class="java.util.Vector">
   <void method="add">
    <object class="options">
@@ -86,6 +86,28 @@
   </void>
   <void method="add">
    <object idref="options2"/>
+  </void>
+  <void method="add">
+   <object class="options" id="options3">
+    <void property="name">
+     <string>Paul</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object idref="options3"/>
+  </void>
+  <void method="add">
+   <object idref="options3"/>
+  </void>
+  <void method="add">
+   <object idref="options3"/>
+  </void>
+  <void method="add">
+   <object idref="options3"/>
+  </void>
+  <void method="add">
+   <object idref="options3"/>
   </void>
  </object>
 </java>
